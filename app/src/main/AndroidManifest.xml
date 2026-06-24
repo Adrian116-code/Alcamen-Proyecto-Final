@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AlcamenProyectoFinal">
+        <activity
+            android:name=".Vista.frmListarDespacho"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.frmListarSolicitudes"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.frmGestionSedes"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.frmEliminarSedes"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.frmModificarSedes"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.frmListarSedes"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.frmInsertarSedes"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.frmGestionProveedores"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.frmEliminarProveedores"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.frmModificarProveedores"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.frmListarProveedores"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.frmInsertarProveedores"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.frmInsertarProductos"
+            android:exported="false"
+            android:theme="@style/Theme.AlcamenProyectoFinal" />
+        <activity
+            android:name=".Vista.frmSalidaProductos"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.frmIngresoProductos"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.frmInsertarSolicitudes"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.frmEliminarProductos"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.frmModificarProductos"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.frmListarProductos"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.frmEliminarUsuarios"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.frmModificarUsuarios"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.frmListarUsuarios"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.frmInsertarUsuarios"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.frmSolicitudes"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.frmCantidadProductos"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.frmGestionSolicitudes"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.frmGestionProductos"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.frmGestionUsuarios"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.frmOperarioAlmacen"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.frmJefeAlmacen"
+            android:exported="false" />
+        <activity
+            android:name=".Vista.frmAdmin"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
