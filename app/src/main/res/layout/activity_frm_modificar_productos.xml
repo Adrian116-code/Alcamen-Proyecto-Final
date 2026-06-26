@@ -5,88 +5,140 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#29224E"
     tools:context=".Vista.frmModificarProductos">
 
+    <TextView
+        android:id="@+id/tvTituloModificarProductos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Modificar Producto"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
-        android:layout_width="365dp"
-        android:layout_height="648dp"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/tvTituloModificarProductos"
+        app:layout_constraintVertical_bias="0.15">
 
         <TextView
             android:id="@+id/textView23"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Codigo:" />
+            android:text="Codigo:"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:layout_marginBottom="2dp" />
 
         <EditText
             android:id="@+id/txtCodigoProductoMod"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="text"
+            android:background="@drawable/input_border"
+            android:padding="10dp"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="12dp" />
 
         <TextView
             android:id="@+id/textView24"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nombre:" />
+            android:text="Nombre:"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:layout_marginBottom="2dp" />
 
         <EditText
             android:id="@+id/txtNombreProductoMod"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="text"
+            android:background="@drawable/input_border"
+            android:padding="10dp"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="12dp" />
 
         <TextView
             android:id="@+id/textView25"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Descripcion:" />
+            android:text="Descripcion:"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:layout_marginBottom="2dp" />
 
         <EditText
             android:id="@+id/txtDescripcionProductoMod"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="text"
+            android:background="@drawable/input_border"
+            android:padding="10dp"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="12dp" />
 
         <TextView
             android:id="@+id/textView48"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ubicacion:" />
+            android:text="Ubicacion:"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:layout_marginBottom="2dp" />
 
         <EditText
             android:id="@+id/txtUbicacionProductoMod"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="text"
+            android:background="@drawable/input_border"
+            android:padding="10dp"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="12dp" />
 
-        <TextView
-            android:id="@+id/textView49"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutProveedorMod"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Codigo Proveedor:" />
+            android:layout_marginBottom="20dp"
+            android:hint="Selecciona un Proveedor"
+            app:hintTextColor="#FFFFFF"
+            android:textColorHint="#B0B0B0"
+            app:boxStrokeColor="#FFFFFF"
+            app:endIconTint="#FFFFFF">
 
-        <EditText
-            android:id="@+id/txtCodigoProveedorProductoMod"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text" />
+            <AutoCompleteTextView
+                android:id="@+id/txtCodigoProveedorProductoMod"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:editable="false"
+                android:textColor="#FFFFFF" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/button39"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="btnModificarProducto"
-            android:text="Modificar Producto" />
+            android:text="Modificar Producto"
+            android:layout_marginBottom="8dp" />
 
         <Button
             android:id="@+id/button40"

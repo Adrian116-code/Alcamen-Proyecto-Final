@@ -5,75 +5,119 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#29224E"
     tools:context=".Vista.frmModificarProveedores">
 
+    <TextView
+        android:id="@+id/tvTituloModificarProveedores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Modificar Proveedor"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
-        android:layout_width="323dp"
-        android:layout_height="497dp"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/tvTituloModificarProveedores"
+        app:layout_constraintVertical_bias="0.15">
 
         <TextView
             android:id="@+id/textView52"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Codigo:" />
+            android:text="Codigo:"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:layout_marginBottom="2dp" />
 
         <EditText
             android:id="@+id/txtCodigoProveedorMod"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="text"
+            android:background="@drawable/input_border"
+            android:padding="10dp"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="12dp" />
 
         <TextView
             android:id="@+id/textView53"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Razon Social:" />
+            android:text="Razon Social:"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:layout_marginBottom="2dp" />
 
         <EditText
             android:id="@+id/txtRazonSocialMod"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="text"
+            android:background="@drawable/input_border"
+            android:padding="10dp"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="12dp" />
 
         <TextView
             android:id="@+id/textView54"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Contacto:" />
+            android:text="Contacto:"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:layout_marginBottom="2dp" />
 
         <EditText
             android:id="@+id/txtContactoMod"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="text"
+            android:background="@drawable/input_border"
+            android:padding="10dp"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="12dp" />
 
         <TextView
             android:id="@+id/textView55"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Telefono:" />
+            android:text="Telefono:"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:layout_marginBottom="2dp" />
 
         <EditText
             android:id="@+id/txtNumeroMod"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="number" />
+            android:inputType="number"
+            android:background="@drawable/input_border"
+            android:padding="10dp"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="24dp" />
 
         <Button
             android:id="@+id/button56"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="btnModificarProveedor"
-            android:text="Modificar Proveedor" />
+            android:text="Modificar Proveedor"
+            android:layout_marginBottom="8dp" />
 
         <Button
             android:id="@+id/button57"

@@ -26,6 +26,9 @@ public interface SedeDao {
     @Query("SELECT * FROM Sedes WHERE codigo_sede = :id")
     Sede obtenerPorId(String id);
 
+    @Query("SELECT codigo_sede FROM Sedes")
+    List<String> obtenerCodigosDeSedes();
+
     @Update
     void actualizarSede(Sede sede);
 

@@ -5,62 +5,99 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#29224E"
     tools:context=".Vista.frmModificarSedes">
 
+    <TextView
+        android:id="@+id/tvTituloModificarSedes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Modificar Sede"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
-        android:layout_width="316dp"
-        android:layout_height="556dp"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/tvTituloModificarSedes"
+        app:layout_constraintVertical_bias="0.15">
 
         <TextView
             android:id="@+id/textView62"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Codigo:" />
+            android:text="Codigo:"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:layout_marginBottom="2dp" />
 
         <EditText
             android:id="@+id/txtCodigoSedeMod"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="text"
+            android:background="@drawable/input_border"
+            android:padding="10dp"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="12dp" />
 
         <TextView
             android:id="@+id/textView63"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nombre:" />
+            android:text="Nombre:"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:layout_marginBottom="2dp" />
 
         <EditText
             android:id="@+id/txtNombreSedeMod"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="text"
+            android:background="@drawable/input_border"
+            android:padding="10dp"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="12dp" />
 
         <TextView
             android:id="@+id/textView64"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Direccion:" />
+            android:text="Direccion:"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:layout_marginBottom="2dp" />
 
         <EditText
             android:id="@+id/txtDireccionSedeMod"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text" />
+            android:inputType="text"
+            android:background="@drawable/input_border"
+            android:padding="10dp"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="24dp" />
 
         <Button
             android:id="@+id/button74"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="btnModificarSede"
-            android:text="Modificar Sede" />
+            android:text="Modificar Sede"
+            android:layout_marginBottom="8dp" />
 
         <Button
             android:id="@+id/button75"

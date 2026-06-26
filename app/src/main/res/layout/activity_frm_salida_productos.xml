@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="#29224E" android:layout_width="match_parent"
+    android:background="#29224E"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Vista.frmSalidaProductos">
 
@@ -51,30 +52,12 @@
                 android:textColor="#FFFFFF" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/textView31"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Cantidad:"
-            android:textColor="#FFFFFF" android:textSize="14sp"
-            android:layout_marginBottom="4dp" />
-
-        <EditText
-            android:id="@+id/txtCantidadSalida"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="number"
-            android:background="@drawable/input_border" android:padding="12dp"
-            android:textColor="#FFFFFF"
-            android:layout_marginBottom="16dp" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/txtSeleccionarSede"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="28dp"
+            android:layout_marginBottom="16dp"
             android:hint="Seleccionar Sede"
             app:hintTextColor="#FFFFFF"
             android:textColorHint="#B0B0B0"
@@ -89,6 +72,26 @@
                 android:inputType="none"
                 android:textColor="#FFFFFF" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textView31"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cantidad:"
+            android:textColor="#FFFFFF"
+            android:textSize="14sp"
+            android:layout_marginBottom="4dp" />
+
+        <EditText
+            android:id="@+id/txtCantidadSalida"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="28dp"
+            android:background="@drawable/input_border"
+            android:ems="10"
+            android:inputType="number"
+            android:padding="12dp"
+            android:textColor="#FFFFFF" />
 
         <Button
             android:id="@+id/button43"

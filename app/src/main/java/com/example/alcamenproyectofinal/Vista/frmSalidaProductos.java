@@ -16,6 +16,7 @@ import androidx.room.Room;
 
 import com.example.alcamenproyectofinal.Datos.AppDatabase;
 import com.example.alcamenproyectofinal.Modelo.Producto;
+import com.example.alcamenproyectofinal.Modelo.Despacho_Sede;
 import com.example.alcamenproyectofinal.R;
 
 import java.util.ArrayList;
@@ -23,27 +24,35 @@ import java.util.List;
 
 public class frmSalidaProductos extends AppCompatActivity {
 
-    AutoCompleteTextView producto_salida;
+    AutoCompleteTextView producto_salida, sede_destino;
     EditText cantidad_salida;
     AppDatabase db;
     List<Producto> listaProductosGlobal;
+    List<String> listaCodigosSedesGlobal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_frm_salida_productos);
+
         db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "hipercorp_db").allowMainThreadQueries().build();
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
         producto_salida = findViewById(R.id.txtProductoSalida);
         cantidad_salida = findViewById(R.id.txtCantidadSalida);
 
+        // Sincronizado exactamente con el ID 'txtSedeSalida' de tu XML
+        sede_destino = findViewById(R.id.txtSedeSalida);
+
         cargarProductosEnDropdown();
+        cargarSedesEnDropdown();
     }
 
     private void cargarProductosEnDropdown() {
@@ -68,11 +77,33 @@ public class frmSalidaProductos extends AppCompatActivity {
         }
     }
 
-    public void btnReducirStock(View view){
-        String seleccion = producto_salida.getText().toString();
+    private void cargarSedesEnDropdown() {
+        try {
+            listaCodigosSedesGlobal = db.sedeDao().obtenerCodigosDeSedes();
+
+            if (listaCodigosSedesGlobal == null || listaCodigosSedesGlobal.isEmpty()) {
+                listaCodigosSedesGlobal = new ArrayList<>();
+                listaCodigosSedesGlobal.add("No hay sedes disponibles");
+            }
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                    android.R.layout.simple_dropdown_item_1line, listaCodigosSedesGlobal);
+            sede_destino.setAdapter(adapter);
+
+        } catch (Exception e) {
+            Toast.makeText(this, "Error al cargar sedes: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void btnReducirStock(View view) {
+        String seleccionProducto = producto_salida.getText().toString();
+        String seleccionSede = sede_destino.getText().toString();
         String cantidadStr = cantidad_salida.getText().toString();
 
-        if (seleccion.isEmpty() || seleccion.equals("No hay productos disponibles") || cantidadStr.isEmpty()) {
+        if (seleccionProducto.isEmpty() || seleccionProducto.equals("No hay productos disponibles") ||
+                seleccionSede.isEmpty() || seleccionSede.equals("No hay sedes disponibles") ||
+                cantidadStr.isEmpty()) {
+
             Toast.makeText(this, "Por favor, complete todos los campos", Toast.LENGTH_LONG).show();
             return;
         }
@@ -83,7 +114,7 @@ public class frmSalidaProductos extends AppCompatActivity {
 
         for (Producto p : listaProductosGlobal) {
             String formatoVisual = p.getNombre() + " (" + p.getCodigo_producto() + ")";
-            if (formatoVisual.equals(seleccion)) {
+            if (formatoVisual.equals(seleccionProducto)) {
                 codigoProductoReal = p.getCodigo_producto();
                 stockActual = p.getStock();
                 break;
@@ -96,9 +127,17 @@ public class frmSalidaProductos extends AppCompatActivity {
         }
 
         try {
+            // 1. Descontar stock del producto (Tu lógica original)
             db.productoDao().reducirStock(codigoProductoReal, cantidadAReducir);
 
-            Toast.makeText(this, "Stock reducido correctamente", Toast.LENGTH_SHORT).show();
+            Despacho_Sede nuevoDespacho = new Despacho_Sede();
+            nuevoDespacho.setCodigo_producto(codigoProductoReal);
+            nuevoDespacho.setCodigo_sede(seleccionSede);
+            nuevoDespacho.setCantidad(cantidadAReducir);
+
+            db.despachoSedeDao().registrarDespacho(nuevoDespacho);
+
+            Toast.makeText(this, "Salida procesada y registrada con éxito", Toast.LENGTH_SHORT).show();
             finish();
         } catch (Exception e) {
             Toast.makeText(this, "Error al procesar la salida: " + e.getMessage(), Toast.LENGTH_LONG).show();
@@ -108,4 +147,5 @@ public class frmSalidaProductos extends AppCompatActivity {
     public void btnRegresar(View view){
         finish();
     }
+
 }
