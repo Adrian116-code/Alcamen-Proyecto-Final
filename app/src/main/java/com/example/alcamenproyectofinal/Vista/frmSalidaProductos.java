@@ -48,7 +48,6 @@ public class frmSalidaProductos extends AppCompatActivity {
         producto_salida = findViewById(R.id.txtProductoSalida);
         cantidad_salida = findViewById(R.id.txtCantidadSalida);
 
-        // Sincronizado exactamente con el ID 'txtSedeSalida' de tu XML
         sede_destino = findViewById(R.id.txtSedeSalida);
 
         cargarProductosEnDropdown();
@@ -127,7 +126,6 @@ public class frmSalidaProductos extends AppCompatActivity {
         }
 
         try {
-            // 1. Descontar stock del producto (Tu lógica original)
             db.productoDao().reducirStock(codigoProductoReal, cantidadAReducir);
 
             Despacho_Sede nuevoDespacho = new Despacho_Sede();
