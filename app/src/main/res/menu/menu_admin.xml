@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_usuarios"
+        android:icon="@drawable/ic_people"
+        android:title="Gestionar Usuarios"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_productos"
+        android:icon="@drawable/ic_inventory"
+        android:title="Gestionar Productos"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_sedes"
+        android:icon="@drawable/ic_location_city"
+        android:title="Gestionar Sedes"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_regresar"
+        android:icon="@drawable/ic_arrow_back"
+        android:title="Regresar"
+        app:showAsAction="always" />
+
+</menu>

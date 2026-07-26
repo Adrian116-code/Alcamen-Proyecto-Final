@@ -6,4 +6,9 @@
     </style>
 
     <style name="Theme.AlcamenProyectoFinal" parent="Base.Theme.AlcamenProyectoFinal" />
+
+    <style name="ToolbarTitleStyle">
+        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
 </resources>

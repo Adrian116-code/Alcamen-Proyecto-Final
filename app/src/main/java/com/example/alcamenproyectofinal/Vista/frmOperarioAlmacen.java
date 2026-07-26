@@ -3,6 +3,9 @@ package com.example.alcamenproyectofinal.Vista;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +17,9 @@ import com.example.alcamenproyectofinal.R;
 
 public class frmOperarioAlmacen extends AppCompatActivity {
 
+    private Button btnIngresoSalidaProductos, btnInsertarSolicitudes, btnRegresarCentral;
+    private ImageButton btnIngresoSalida, btnSolicitudes, btnRegresar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +30,35 @@ public class frmOperarioAlmacen extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        btnIngresoSalidaProductos = findViewById(R.id.btnIngresoSalidaProductos);
+        btnInsertarSolicitudes = findViewById(R.id.btnInsertarSolicitudes);
+        btnRegresarCentral = findViewById(R.id.btnRegresarCentral);
+
+        btnIngresoSalida = findViewById(R.id.btnIngresoSalida);
+        btnSolicitudes = findViewById(R.id.btnSolicitudes);
+        btnRegresar = findViewById(R.id.btnRegresar);
+
+        configurarEventos();
+
+    }
+    private void configurarEventos() {
+        btnIngresoSalidaProductos.setOnClickListener(v -> abrirIngresoSalida());
+        btnIngresoSalida.setOnClickListener(v -> abrirIngresoSalida());
+
+        btnInsertarSolicitudes.setOnClickListener(v -> abrirInsertarSolicitudes());
+        btnSolicitudes.setOnClickListener(v -> abrirInsertarSolicitudes());
+
+        btnRegresarCentral.setOnClickListener(v -> finish());
+        btnRegresar.setOnClickListener(v -> finish());
+    }
+
+    private void abrirIngresoSalida() {
+        Toast.makeText(this, "Navegando a Ingreso/Salida de Productos", Toast.LENGTH_SHORT).show();
+    }
+
+    private void abrirInsertarSolicitudes() {
+        Toast.makeText(this, "Navegando a Insertar Solicitudes", Toast.LENGTH_SHORT).show();
     }
 
     public void btnCantidadProductos(View view){
