@@ -43,23 +43,20 @@
             android:rowCount="2">
 
             <!-- Fila 1 -->
-            <Button
-                android:id="@+id/btnIngresoSalidaProductos"
-                android:layout_width="140dp"
-                android:layout_height="100dp"
-                android:layout_margin="8dp"
-                android:backgroundTint="#5C429B"
-                android:text="Ingreso/Salida\nProductos" />
+
+            <!-- Fila 2: Botón Regresar abarcando ambas columnas -->
 
             <Button
                 android:id="@+id/btnInsertarSolicitudes"
                 android:layout_width="140dp"
                 android:layout_height="100dp"
+                android:layout_row="0"
+                android:layout_column="1"
                 android:layout_margin="8dp"
                 android:backgroundTint="#5C429B"
+                android:textColor="@color/white"
                 android:text="Insertar\nSolicitudes" />
 
-            <!-- Fila 2: Botón Regresar abarcando ambas columnas -->
             <Button
                 android:id="@+id/btnRegresarCentral"
                 android:layout_width="296dp"
@@ -70,7 +67,19 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="8dp"
                 android:backgroundTint="#5C429B"
+                android:textColor="@color/white"
                 android:text="Regresar" />
+
+            <Button
+                android:id="@+id/btnIngresoSalidaProductos"
+                android:layout_width="140dp"
+                android:layout_height="100dp"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_margin="8dp"
+                android:backgroundTint="#5C429B"
+                android:textColor="@color/white"
+                android:text="Ingreso/Salida\nProductos" />
 
         </GridLayout>
 
@@ -80,41 +89,70 @@
     <LinearLayout
         android:id="@+id/footerOperarioAlmacen"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="65dp"
         android:layout_alignParentBottom="true"
-        android:background="#5C429B"
+        android:background="#1F1A3D"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingHorizontal="2dp"
+        android:paddingVertical="4dp">
 
-        <ImageButton
+        <!-- INGRESO / SALIDA -->
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnIngresoSalida"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Ingreso/Salida Productos"
-            android:src="@drawable/ic_swap_horiz"
-            app:tint="@android:color/white" />
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:text="Movimientos"
+            android:textColor="@android:color/white"
+            android:textSize="9sp"
+            app:icon="@drawable/ic_swap_horiz"
+            app:iconGravity="top"
+            app:iconPadding="1dp"
+            app:iconSize="20dp"
+            app:iconTint="@android:color/white"
+            app:textAllCaps="false" />
 
-        <ImageButton
+        <!-- INSERTAR SOLICITUDES -->
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSolicitudes"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Insertar Solicitudes"
-            android:src="@drawable/ic_note_add"
-            app:tint="@android:color/white" />
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:text="Solicitudes"
+            android:textColor="@android:color/white"
+            android:textSize="9sp"
+            app:icon="@drawable/ic_note_add"
+            app:iconGravity="top"
+            app:iconPadding="1dp"
+            app:iconSize="20dp"
+            app:iconTint="@android:color/white"
+            app:textAllCaps="false" />
 
-        <ImageButton
+        <!-- REGRESAR -->
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnRegresar"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Regresar"
-            android:src="@drawable/ic_arrow_back"
-            app:tint="@android:color/white" />
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:text="Regresar"
+            android:textColor="@android:color/white"
+            android:textSize="9sp"
+            app:icon="@drawable/ic_arrow_back"
+            app:iconGravity="top"
+            app:iconPadding="1dp"
+            app:iconSize="20dp"
+            app:iconTint="@android:color/white"
+            app:textAllCaps="false" />
 
     </LinearLayout>
 

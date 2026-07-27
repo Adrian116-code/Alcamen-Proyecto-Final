@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="6dp"
+    app:cardBackgroundColor="#2A2450"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <!-- Barra vertical de acento azul para proveedores -->
+        <View
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:background="#3B82F6"
+            android:layout_marginEnd="12dp" />
+
+        <!-- Datos del Proveedor -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <!-- Razón Social / Empresa -->
+            <TextView
+                android:id="@+id/tvRazonSocial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Razón Social"
+                android:textColor="#FFFFFF"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <!-- Contacto asignado -->
+            <TextView
+                android:id="@+id/tvContacto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Contacto: Nombre Apellido"
+                android:textColor="#A78BFA"
+                android:textSize="14sp" />
+
+            <!-- Teléfono y Código -->
+            <TextView
+                android:id="@+id/tvDetallesProveedor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:text="Teléfono: 987654321 | Cód: PRV001"
+                android:textColor="#B3FFFFFF"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -174,67 +174,78 @@
     <!-- FOOTER FIJO DE NAVEGACIÓN (CON 5 OPCIONES) -->
     <LinearLayout
         android:id="@+id/footerGestionProductos"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:background="#5C429B"
-        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#1F1A3D"
         android:orientation="horizontal"
+        android:padding="4dp"
+        android:gravity="center_vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <!-- 1. Insertar -->
-        <ImageButton
-            android:id="@+id/btnNavInsertarProducto"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnUsuarios"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Insertar Producto"
-            android:src="@android:drawable/ic_menu_add"
-            app:tint="@android:color/white" />
+            android:text="Usuarios"
+            android:textColor="@android:color/white"
+            android:textSize="11sp"
+            app:icon="@drawable/ic_people"
+            app:iconGravity="top"
+            app:iconPadding="2dp"
+            app:iconTint="@android:color/white"
+            app:textAllCaps="false" />
 
-        <!-- 2. Consultar -->
-        <ImageButton
-            android:id="@+id/btnNavConsultarProducto"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnProductos"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
             android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Consultar Productos"
-            android:src="@android:drawable/ic_menu_search"
-            app:tint="@android:color/white" />
+            android:text="Productos"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            app:backgroundTint="#3A3266"
+            app:cornerRadius="16dp"
+            app:icon="@drawable/ic_inventory"
+            app:iconGravity="top"
+            app:iconPadding="2dp"
+            app:iconTint="@android:color/white"
+            app:textAllCaps="false" />
 
-        <ImageButton
-            android:id="@+id/btnNavModificarProducto"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSedes"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Modificar Producto"
-            android:src="@android:drawable/ic_menu_edit"
-            app:tint="@android:color/white" />
+            android:text="Sedes"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            app:icon="@drawable/ic_location_city"
+            app:iconGravity="top"
+            app:iconPadding="2dp"
+            app:iconTint="@android:color/white"
+            app:textAllCaps="false" />
 
-        <ImageButton
-            android:id="@+id/btnNavEliminarProducto"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRegresar"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Eliminar Producto"
-            app:srcCompat="@drawable/ic_close"
-            app:tint="@android:color/white" />
-
-        <ImageButton
-            android:id="@+id/btnNavRegresar"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Regresar"
-            android:onClick="btnRegresar"
-            android:src="@android:drawable/ic_menu_revert"
-            app:tint="@android:color/white" />
+            android:text="Regresar"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            app:icon="@drawable/ic_arrow_back"
+            app:iconGravity="top"
+            app:iconPadding="2dp"
+            app:iconTint="@android:color/white"
+            app:textAllCaps="false" />
 
     </LinearLayout>
 

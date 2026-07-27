@@ -89,4 +89,81 @@
 
     </GridLayout>
 
+    <LinearLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#1F1A3D"
+        android:orientation="horizontal"
+        android:padding="4dp"
+        android:gravity="center_vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnUsuarios"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Usuarios"
+            android:textColor="@android:color/white"
+            android:textSize="11sp"
+            app:icon="@drawable/ic_people"
+            app:iconGravity="top"
+            app:iconPadding="2dp"
+            app:iconTint="@android:color/white"
+            app:textAllCaps="false" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnProductos"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Productos"
+            android:textColor="@android:color/white"
+            android:textSize="11sp"
+            app:icon="@drawable/ic_inventory"
+            app:iconGravity="top"
+            app:iconPadding="2dp"
+            app:iconTint="@android:color/white"
+            app:textAllCaps="false" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSedes"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="4dp"
+            android:layout_weight="1"
+            android:text="Sedes"
+            android:textColor="@android:color/white"
+            android:textSize="11sp"
+            app:backgroundTint="#3A3266"
+            app:cornerRadius="16dp"
+            app:icon="@drawable/ic_location_city"
+            app:iconGravity="top"
+            app:iconPadding="2dp"
+            app:iconTint="@android:color/white"
+            app:textAllCaps="false" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRegresar"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Regresar"
+            android:textColor="@android:color/white"
+            android:textSize="11sp"
+            app:icon="@drawable/ic_arrow_back"
+            app:iconGravity="top"
+            app:iconPadding="2dp"
+            app:iconTint="@android:color/white"
+            app:textAllCaps="false" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

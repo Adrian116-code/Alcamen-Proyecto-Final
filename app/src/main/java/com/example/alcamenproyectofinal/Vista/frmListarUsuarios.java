@@ -11,8 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import com.example.alcamenproyectofinal.Adaptador.UsuarioAdapter;
 import com.example.alcamenproyectofinal.Datos.AppDatabase;
 import com.example.alcamenproyectofinal.Modelo.Usuario;
 import com.example.alcamenproyectofinal.R;
@@ -25,46 +28,45 @@ import java.util.List;
 
 public class frmListarUsuarios extends AppCompatActivity {
 
+    private RecyclerView rvUsuarios;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_frm_listar_usuarios);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        // 1. Vincular el RecyclerView del XML y asignarle un Manager lineal
+        rvUsuarios = findViewById(R.id.rvUsuarios);
+        rvUsuarios.setLayoutManager(new LinearLayoutManager(this));
+
+        // 2. Cargar los datos inmediatamente al iniciar la pantalla
+        cargarListaUsuarios();
     }
 
-    public void btnListarUsuarioss(View view) {
-
-        TextView txtListado = findViewById(R.id.txtListarUsuarios);
-
+    private void cargarListaUsuarios() {
+        // Consulta a Room
         AppDatabase db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "hipercorp_db").allowMainThreadQueries().build();
 
         List<Usuario> lista = db.usuarioDao().obtenerUsuarios();
 
-        StringBuilder cadenaUsuarios = new StringBuilder();
-
-        for (Usuario u : lista) {
-            cadenaUsuarios.append("Código: ").append(u.getCodigo_usuario()).append("\n")
-                    .append("Dni: ").append(u.getDni()).append("\n")
-                    .append("Nombre: ").append(u.getNombres()).append("\n")
-                    .append("Apellido: ").append(u.getApellidos()).append("\n")
-                    .append("Edad: ").append(u.getEdad()).append("\n")
-                    .append("Rol: ").append(u.getRol()).append("\n")
-                    .append("Username: ").append(u.getUsername()).append("\n")
-                    .append("Password: ").append(u.getPassword()).append("\n")
-                    .append("\n");
-        }
-
-        txtListado.setText(cadenaUsuarios.toString());
+        // Asignar el adaptador con los datos recuperados
+        UsuarioAdapter adapter = new UsuarioAdapter(lista);
+        rvUsuarios.setAdapter(adapter);
     }
 
-    public void btnRegresar(View view){
+    public void btnListarUsuarioss(View view) {
+        cargarListaUsuarios();
+    }
+
+    public void btnRegresar(View view) {
         finish();
     }
 }

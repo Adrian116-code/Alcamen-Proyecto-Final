@@ -14,11 +14,12 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.alcamenproyectofinal.R;
+import com.google.android.material.button.MaterialButton;
 
 public class frmOperarioAlmacen extends AppCompatActivity {
 
     private Button btnIngresoSalidaProductos, btnInsertarSolicitudes, btnRegresarCentral;
-    private ImageButton btnIngresoSalida, btnSolicitudes, btnRegresar;
+    private MaterialButton btnIngresoSalida, btnSolicitudes, btnRegresar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,22 +44,27 @@ public class frmOperarioAlmacen extends AppCompatActivity {
 
     }
     private void configurarEventos() {
+        // Eventos para Movimientos / Cantidad de Productos
         btnIngresoSalidaProductos.setOnClickListener(v -> abrirIngresoSalida());
         btnIngresoSalida.setOnClickListener(v -> abrirIngresoSalida());
 
+        // Eventos para Insertar Solicitudes
         btnInsertarSolicitudes.setOnClickListener(v -> abrirInsertarSolicitudes());
         btnSolicitudes.setOnClickListener(v -> abrirInsertarSolicitudes());
 
+        // Eventos para Regresar
         btnRegresarCentral.setOnClickListener(v -> finish());
         btnRegresar.setOnClickListener(v -> finish());
     }
 
     private void abrirIngresoSalida() {
-        Toast.makeText(this, "Navegando a Ingreso/Salida de Productos", Toast.LENGTH_SHORT).show();
+        Intent x = new Intent(this, frmCantidadProductos.class);
+        startActivity(x);
     }
 
     private void abrirInsertarSolicitudes() {
-        Toast.makeText(this, "Navegando a Insertar Solicitudes", Toast.LENGTH_SHORT).show();
+        Intent x = new Intent(this, frmInsertarSolicitudes.class);
+        startActivity(x);
     }
 
     public void btnCantidadProductos(View view){

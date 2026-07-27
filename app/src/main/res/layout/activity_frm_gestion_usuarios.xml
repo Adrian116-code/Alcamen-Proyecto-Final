@@ -91,7 +91,6 @@
 
     </GridLayout>
 
-    <!-- Footer de navegación exactamente igual al de Admin -->
     <LinearLayout
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
@@ -105,13 +104,16 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnUsuarios"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="4dp"
             android:layout_weight="1"
             android:text="Usuarios"
             android:textColor="@android:color/white"
             android:textSize="12sp"
+            app:backgroundTint="#3A3266"
+            app:cornerRadius="16dp"
             app:icon="@drawable/ic_people"
             app:iconGravity="top"
             app:iconPadding="2dp"

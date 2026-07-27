@@ -14,11 +14,14 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.alcamenproyectofinal.R;
+import com.google.android.material.button.MaterialButton;
 
 public class frmJefeAlmacen extends AppCompatActivity {
 
     private Button btnGestionarProductos, btnGestionarSolicitudes, btnGestionarProveedores, btnListarDespacho, btnRegresarCentral;
-    private ImageButton btnProductos, btnSolicitudes, btnProveedores, btnDespacho, btnRegresar;
+
+    // Botones del footer (MaterialButton para coincidir con el XML)
+    private MaterialButton btnProductos, btnSolicitudes, btnProveedores, btnDespacho, btnRegresar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,7 @@ public class frmJefeAlmacen extends AppCompatActivity {
         btnListarDespacho = findViewById(R.id.btnListarDespacho);
         btnRegresarCentral = findViewById(R.id.btnRegresarCentral);
 
+        // Inicializar elementos del footer (MaterialButton)
         btnProductos = findViewById(R.id.btnProductos);
         btnSolicitudes = findViewById(R.id.btnSolicitudes);
         btnProveedores = findViewById(R.id.btnProveedores);
@@ -47,36 +51,45 @@ public class frmJefeAlmacen extends AppCompatActivity {
     }
 
     private void configurarEventos() {
+        // Eventos para Productos
         btnGestionarProductos.setOnClickListener(v -> abrirProductos());
         btnProductos.setOnClickListener(v -> abrirProductos());
 
+        // Eventos para Solicitudes
         btnGestionarSolicitudes.setOnClickListener(v -> abrirSolicitudes());
         btnSolicitudes.setOnClickListener(v -> abrirSolicitudes());
 
+        // Eventos para Proveedores
         btnGestionarProveedores.setOnClickListener(v -> abrirProveedores());
         btnProveedores.setOnClickListener(v -> abrirProveedores());
 
+        // Eventos para Despacho
         btnListarDespacho.setOnClickListener(v -> abrirDespacho());
         btnDespacho.setOnClickListener(v -> abrirDespacho());
 
+        // Eventos para Regresar
         btnRegresarCentral.setOnClickListener(v -> finish());
         btnRegresar.setOnClickListener(v -> finish());
     }
 
     private void abrirProductos() {
-        Toast.makeText(this, "Navegando a Productos", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, frmGestionProductos.class);
+        startActivity(intent);
     }
 
     private void abrirSolicitudes() {
-        Toast.makeText(this, "Navegando a Solicitudes", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, frmGestionSolicitudes.class);
+        startActivity(intent);
     }
 
     private void abrirProveedores() {
-        Toast.makeText(this, "Navegando a Proveedores", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, frmGestionProveedores.class);
+        startActivity(intent);
     }
 
     private void abrirDespacho() {
-        Toast.makeText(this, "Navegando a Despacho", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, frmListarDespacho.class);
+        startActivity(intent);
     }
 
     public void btnGestionarProductos(View view){

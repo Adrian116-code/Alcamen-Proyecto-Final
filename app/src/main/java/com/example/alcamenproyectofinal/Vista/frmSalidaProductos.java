@@ -47,7 +47,6 @@ public class frmSalidaProductos extends AppCompatActivity {
 
         producto_salida = findViewById(R.id.txtProductoSalida);
         cantidad_salida = findViewById(R.id.txtCantidadSalida);
-
         sede_destino = findViewById(R.id.txtSedeSalida);
 
         cargarProductosEnDropdown();
@@ -59,8 +58,10 @@ public class frmSalidaProductos extends AppCompatActivity {
             listaProductosGlobal = db.productoDao().obtenerProductos();
             List<String> nombresProductos = new ArrayList<>();
 
-            for (Producto p : listaProductosGlobal) {
-                nombresProductos.add(p.getNombre() + " (" + p.getCodigo_producto() + ")");
+            if (listaProductosGlobal != null) {
+                for (Producto p : listaProductosGlobal) {
+                    nombresProductos.add(p.getNombre() + " (" + p.getCodigo_producto() + ")");
+                }
             }
 
             if (nombresProductos.isEmpty()) {
@@ -97,8 +98,9 @@ public class frmSalidaProductos extends AppCompatActivity {
     public void btnReducirStock(View view) {
         String seleccionProducto = producto_salida.getText().toString();
         String seleccionSede = sede_destino.getText().toString();
-        String cantidadStr = cantidad_salida.getText().toString();
+        String cantidadStr = cantidad_salida.getText().toString().trim();
 
+        // Validaciones básicas de selección
         if (seleccionProducto.isEmpty() || seleccionProducto.equals("No hay productos disponibles") ||
                 seleccionSede.isEmpty() || seleccionSede.equals("No hay sedes disponibles") ||
                 cantidadStr.isEmpty()) {
@@ -107,16 +109,30 @@ public class frmSalidaProductos extends AppCompatActivity {
             return;
         }
 
-        int cantidadAReducir = Integer.parseInt(cantidadStr);
+        // Validación y parseo seguro de la cantidad
+        int cantidadAReducir;
+        try {
+            cantidadAReducir = Integer.parseInt(cantidadStr);
+            if (cantidadAReducir <= 0) {
+                Toast.makeText(this, "La cantidad debe ser mayor a 0", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        } catch (NumberFormatException e) {
+            Toast.makeText(this, "Ingrese un número válido", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         String codigoProductoReal = "";
         int stockActual = 0;
 
-        for (Producto p : listaProductosGlobal) {
-            String formatoVisual = p.getNombre() + " (" + p.getCodigo_producto() + ")";
-            if (formatoVisual.equals(seleccionProducto)) {
-                codigoProductoReal = p.getCodigo_producto();
-                stockActual = p.getStock();
-                break;
+        if (listaProductosGlobal != null) {
+            for (Producto p : listaProductosGlobal) {
+                String formatoVisual = p.getNombre() + " (" + p.getCodigo_producto() + ")";
+                if (formatoVisual.equals(seleccionProducto)) {
+                    codigoProductoReal = p.getCodigo_producto();
+                    stockActual = p.getStock();
+                    break;
+                }
             }
         }
 
@@ -125,25 +141,43 @@ public class frmSalidaProductos extends AppCompatActivity {
             return;
         }
 
+        final String finalCodigoProducto = codigoProductoReal;
+        final int finalCantidadAReducir = cantidadAReducir;
+
         try {
-            db.productoDao().reducirStock(codigoProductoReal, cantidadAReducir);
+            // Transacción para asegurar consistencia en la BD
+            db.runInTransaction(() -> {
+                db.productoDao().reducirStock(finalCodigoProducto, finalCantidadAReducir);
 
-            Despacho_Sede nuevoDespacho = new Despacho_Sede();
-            nuevoDespacho.setCodigo_producto(codigoProductoReal);
-            nuevoDespacho.setCodigo_sede(seleccionSede);
-            nuevoDespacho.setCantidad(cantidadAReducir);
+                Despacho_Sede nuevoDespacho = new Despacho_Sede();
+                nuevoDespacho.setCodigo_producto(finalCodigoProducto);
+                nuevoDespacho.setCodigo_sede(seleccionSede);
+                nuevoDespacho.setCantidad(finalCantidadAReducir);
 
-            db.despachoSedeDao().registrarDespacho(nuevoDespacho);
+                db.despachoSedeDao().registrarDespacho(nuevoDespacho);
+            });
 
             Toast.makeText(this, "Salida procesada y registrada con éxito", Toast.LENGTH_SHORT).show();
             finish();
+
         } catch (Exception e) {
             Toast.makeText(this, "Error al procesar la salida: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 
-    public void btnRegresar(View view){
-        finish();
+    // ==================== MÉTODOS DE NAVEGACIÓN (FOOTER / REGRESAR) ====================
+
+    public void btnIngresoSalida(View view) {
+        // Pantalla actual (Movimientos)
     }
 
+    public void btnSolicitudes(View view) {
+        // Intent a tu pantalla de Solicitudes
+        // Intent intent = new Intent(this, frmSolicitudes.class);
+        // startActivity(intent);
+    }
+
+    public void btnRegresar(View view) {
+        finish();
+    }
 }

@@ -54,4 +54,118 @@
 
     </GridLayout>
 
+    <LinearLayout
+        android:id="@+id/footerJefeAlmacen"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_alignParentBottom="true"
+        android:background="#1F1A3D"
+        android:orientation="horizontal"
+        android:paddingHorizontal="2dp"
+        android:gravity="center_vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- PRODUCTOS -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnProductos"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:text="Productos"
+            android:textColor="@android:color/white"
+            android:textSize="9sp"
+            app:icon="@drawable/ic_inventory"
+            app:iconGravity="top"
+            app:iconPadding="1dp"
+            app:iconSize="18dp"
+            app:iconTint="@android:color/white"
+            app:textAllCaps="false" />
+
+        <!-- SOLICITUDES (ACTIVO EN ESTA PANTALLA) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSolicitudes"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="0dp"
+            android:layout_height="65dp"
+            android:layout_marginVertical="6dp"
+            android:layout_weight="1"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:text="Solicitudes"
+            android:textColor="@android:color/white"
+            android:textSize="9sp"
+            app:backgroundTint="#3A3266"
+            app:cornerRadius="12dp"
+            app:icon="@drawable/ic_assignment"
+            app:iconGravity="top"
+            app:iconPadding="1dp"
+            app:iconSize="18dp"
+            app:iconTint="@android:color/white"
+            app:textAllCaps="false" />
+
+        <!-- PROVEEDORES -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnProveedores"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:text="Proveedores"
+            android:textColor="@android:color/white"
+            android:textSize="9sp"
+            app:icon="@drawable/ic_local_shipping"
+            app:iconGravity="top"
+            app:iconPadding="1dp"
+            app:iconSize="18dp"
+            app:iconTint="@android:color/white"
+            app:textAllCaps="false" />
+
+        <!-- DESPACHO -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDespacho"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:text="Despacho"
+            android:textColor="@android:color/white"
+            android:textSize="9sp"
+            app:icon="@drawable/ic_list_alt"
+            app:iconGravity="top"
+            app:iconPadding="1dp"
+            app:iconSize="18dp"
+            app:iconTint="@android:color/white"
+            app:textAllCaps="false" />
+
+        <!-- REGRESAR -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRegresar"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingLeft="0dp"
+            android:paddingRight="0dp"
+            android:text="Regresar"
+            android:textColor="@android:color/white"
+            android:textSize="9sp"
+            app:icon="@drawable/ic_arrow_back"
+            app:iconGravity="top"
+            app:iconPadding="1dp"
+            app:iconSize="18dp"
+            app:iconTint="@android:color/white"
+            app:textAllCaps="false" />
+
+    </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

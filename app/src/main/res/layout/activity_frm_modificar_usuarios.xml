@@ -8,6 +8,7 @@
     android:background="#29224E"
     tools:context=".Vista.frmModificarUsuarios">
 
+    <!-- Título Fijo Arriba -->
     <TextView
         android:id="@+id/tvTituloModificarUsuarios"
         android:layout_width="wrap_content"
@@ -15,197 +16,285 @@
         android:layout_marginTop="30dp"
         android:text="Modificar Usuario"
         android:textColor="#FFFFFF"
-        android:textSize="30sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:layout_width="340dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <!-- Formulario Desplazable -->
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@+id/bottomBar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTituloModificarUsuarios"
-        app:layout_constraintVertical_bias="0.15">
+        app:layout_constraintTop_toBottomOf="@+id/tvTituloModificarUsuarios">
 
-        <TextView
-            android:id="@+id/textView14"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="340dp"
             android:layout_height="wrap_content"
-            android:text="Codigo:"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:layout_marginBottom="2dp" />
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="24dp">
 
-        <EditText
-            android:id="@+id/txtCodigoUsuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:background="@drawable/input_border"
-            android:padding="10dp"
-            android:textColor="#000000"
-            android:layout_marginBottom="12dp" />
-
-        <TextView
-            android:id="@+id/textView15"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Dni:"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:layout_marginBottom="2dp" />
-
-        <EditText
-            android:id="@+id/txtDni"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="number"
-            android:background="@drawable/input_border"
-            android:padding="10dp"
-            android:textColor="#000000"
-            android:layout_marginBottom="12dp" />
-
-        <TextView
-            android:id="@+id/textView16"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nombres:"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:layout_marginBottom="2dp" />
-
-        <EditText
-            android:id="@+id/txtNombres"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:background="@drawable/input_border"
-            android:padding="10dp"
-            android:textColor="#000000"
-            android:layout_marginBottom="12dp" />
-
-        <TextView
-            android:id="@+id/textView42"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Apellidos:"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:layout_marginBottom="2dp" />
-
-        <EditText
-            android:id="@+id/txtApellidosMod"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:background="@drawable/input_border"
-            android:padding="10dp"
-            android:textColor="#000000"
-            android:layout_marginBottom="12dp" />
-
-        <TextView
-            android:id="@+id/textView43"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Edad:"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:layout_marginBottom="2dp" />
-
-        <EditText
-            android:id="@+id/txtEdadMod"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="number"
-            android:background="@drawable/input_border"
-            android:padding="10dp"
-            android:textColor="#000000"
-            android:layout_marginBottom="12dp" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layoutRolMod"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:hint="Selecciona un Rol"
-            app:hintTextColor="#FFFFFF"
-            android:textColorHint="#B0B0B0"
-            app:boxStrokeColor="#FFFFFF"
-            app:endIconTint="#FFFFFF">
-
-            <AutoCompleteTextView
-                android:id="@+id/txtrolMod"
+            <TextView
+                android:id="@+id/textView14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="none"
-                android:editable="false"
-                android:textColor="#FFFFFF" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginBottom="2dp"
+                android:text="Codigo:"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/textView46"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Username:"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:layout_marginBottom="2dp" />
+            <EditText
+                android:id="@+id/txtCodigoUsuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/input_border"
+                android:ems="10"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textColor="#000000" />
 
-        <EditText
-            android:id="@+id/txtUsernameMod"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:background="@drawable/input_border"
-            android:padding="10dp"
-            android:textColor="#000000"
-            android:layout_marginBottom="12dp" />
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:text="Dni:"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/textView47"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Password:"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"
-            android:layout_marginBottom="2dp" />
+            <EditText
+                android:id="@+id/txtDni"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/input_border"
+                android:ems="10"
+                android:inputType="number"
+                android:padding="10dp"
+                android:textColor="#000000" />
 
-        <EditText
-            android:id="@+id/txtPasswordMod"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="text"
-            android:background="@drawable/input_border"
-            android:padding="10dp"
-            android:textColor="#000000"
-            android:layout_marginBottom="20dp" />
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:text="Nombres:"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
 
-        <Button
-            android:id="@+id/button29"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="btnModificarUsuario"
-            android:text="Modificar Usuario"
-            android:layout_marginBottom="8dp" />
+            <EditText
+                android:id="@+id/txtNombres"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/input_border"
+                android:ems="10"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textColor="#000000" />
 
-        <Button
-            android:id="@+id/button30"
-            android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/textView42"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:text="Apellidos:"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/txtApellidosMod"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/input_border"
+                android:ems="10"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/textView43"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:text="Edad:"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/txtEdadMod"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/input_border"
+                android:ems="10"
+                android:inputType="number"
+                android:padding="10dp"
+                android:textColor="#000000" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutRolMod"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:hint="Selecciona un Rol"
+                android:textColorHint="#B0B0B0"
+                app:boxStrokeColor="#FFFFFF"
+                app:endIconTint="#FFFFFF"
+                app:hintTextColor="#FFFFFF">
+
+                <AutoCompleteTextView
+                    android:id="@+id/txtrolMod"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:editable="false"
+                    android:inputType="none"
+                    android:textColor="#FFFFFF" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/textView46"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:text="Username:"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/txtUsernameMod"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/input_border"
+                android:ems="10"
+                android:inputType="text"
+                android:padding="10dp"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/textView47"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="2dp"
+                android:text="Password:"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp" />
+
+            <EditText
+                android:id="@+id/txtPasswordMod"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/input_border"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:padding="10dp"
+                android:textColor="#000000" />
+
+            <Button
+                android:id="@+id/button29"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:onClick="btnModificarUsuario"
+                android:text="Modificar Usuario" />
+
+            <Button
+                android:id="@+id/button30"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="btnRegresar"
+                android:text="Regresar" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Footer Fijo Abajo -->
+    <LinearLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#1F1A3D"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnUsuarios"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:onClick="btnRegresar"
-            android:text="Regresar" />
+            android:layout_marginHorizontal="4dp"
+            android:layout_weight="1"
+            android:text="Usuarios"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            app:backgroundTint="#3A3266"
+            app:cornerRadius="16dp"
+            app:icon="@drawable/ic_people"
+            app:iconGravity="top"
+            app:iconPadding="2dp"
+            app:iconTint="@android:color/white"
+            app:textAllCaps="false" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnProductos"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Productos"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            app:icon="@drawable/ic_inventory"
+            app:iconGravity="top"
+            app:iconPadding="2dp"
+            app:iconTint="@android:color/white"
+            app:textAllCaps="false" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSedes"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Sedes"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            app:icon="@drawable/ic_location_city"
+            app:iconGravity="top"
+            app:iconPadding="2dp"
+            app:iconTint="@android:color/white"
+            app:textAllCaps="false" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRegresar"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Regresar"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            app:icon="@drawable/ic_arrow_back"
+            app:iconGravity="top"
+            app:iconPadding="2dp"
+            app:iconTint="@android:color/white"
+            app:textAllCaps="false" />
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
