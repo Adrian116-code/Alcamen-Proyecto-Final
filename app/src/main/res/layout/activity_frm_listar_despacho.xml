@@ -8,7 +8,6 @@
     android:background="#29224E"
     tools:context=".Vista.frmListarDespachos">
 
-    <!-- TÍTULO CENTRADO -->
     <TextView
         android:id="@+id/tvTituloListarDespachos"
         android:layout_width="wrap_content"
@@ -22,7 +21,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- RECYCLERVIEW DE DESPACHOS -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvDespachos"
         android:layout_width="0dp"
@@ -36,7 +34,6 @@
         app:layout_constraintTop_toBottomOf="@+id/tvTituloListarDespachos"
         tools:listitem="@layout/item_despacho" />
 
-    <!-- FOOTER FIJO EN LA PARTE INFERIOR -->
     <LinearLayout
         android:id="@+id/footerDespachos"
         android:layout_width="match_parent"

@@ -67,25 +67,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <!-- PRODUCTOS -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnProductos"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:paddingLeft="0dp"
-            android:paddingRight="0dp"
-            android:text="Productos"
-            android:textColor="@android:color/white"
-            android:textSize="9sp"
-            app:icon="@drawable/ic_inventory"
-            app:iconGravity="top"
-            app:iconPadding="1dp"
-            app:iconSize="18dp"
-            app:iconTint="@android:color/white"
-            app:textAllCaps="false" />
-
         <!-- SOLICITUDES (ACTIVO EN ESTA PANTALLA) -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSolicitudes"

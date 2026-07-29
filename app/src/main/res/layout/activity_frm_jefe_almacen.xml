@@ -55,8 +55,8 @@
                 android:layout_height="100dp"
                 android:layout_margin="8dp"
                 android:backgroundTint="#5C429B"
-                android:textColor="@color/white"
-                android:text="Gestionar\nSolicitudes" />
+                android:text="Listar\nSolicitudes"
+                android:textColor="@color/white" />
 
             <Button
                 android:id="@+id/btnGestionarProveedores"
@@ -86,8 +86,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="8dp"
                 android:backgroundTint="#5C429B"
-                android:textColor="@color/white"
-                android:text="Regresar" />
+                android:text="Regresar"
+                android:textColor="@color/white" />
 
         </GridLayout>
 
@@ -103,25 +103,6 @@
         android:paddingHorizontal="2dp"
         android:paddingVertical="4dp"
         android:gravity="center_vertical">
-
-        <!-- PRODUCTOS -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnProductos"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:paddingLeft="0dp"
-            android:paddingRight="0dp"
-            android:text="Productos"
-            android:textColor="@android:color/white"
-            android:textSize="9sp"
-            app:icon="@drawable/ic_inventory"
-            app:iconGravity="top"
-            app:iconPadding="1dp"
-            app:iconSize="20dp"
-            app:iconTint="@android:color/white"
-            app:textAllCaps="false" />
 
         <!-- SOLICITUDES -->
         <com.google.android.material.button.MaterialButton

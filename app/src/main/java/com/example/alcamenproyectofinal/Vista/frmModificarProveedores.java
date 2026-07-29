@@ -20,44 +20,87 @@ import com.example.alcamenproyectofinal.R;
 
 public class frmModificarProveedores extends AppCompatActivity {
 
-    EditText codigo, razon_social, contacto, telefono;
+    private EditText codigo, razon_social, contacto, telefono;
+    private AppDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_frm_modificar_proveedores);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
+        // 1. Inicializar Room Database
+        db = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class, "hipercorp_db").allowMainThreadQueries().build();
+
+        // 2. Mapear vistas del XML
         codigo = findViewById(R.id.txtCodigoProveedorMod);
         razon_social = findViewById(R.id.txtRazonSocialMod);
         contacto = findViewById(R.id.txtContactoMod);
         telefono = findViewById(R.id.txtNumeroMod);
+
+        // 3. Recibir la clave primaria mediante el Intent y autocompletar
+        if (getIntent().hasExtra("CODIGO_PROVEEDOR")) {
+            String codigoRecibido = getIntent().getStringExtra("CODIGO_PROVEEDOR");
+            cargarDatosProveedor(codigoRecibido);
+        }
     }
 
-    public void btnModificarProveedor(View view){
+    private void cargarDatosProveedor(String codigoProveedor) {
+        try {
+            // Buscamos el proveedor en Room mediante su DAO
+            Proveedor proveedorEncontrado = db.proveedorDao().obtenerPorId(codigoProveedor);
 
-        AppDatabase db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "hipercorp_db").allowMainThreadQueries().build();
+            if (proveedorEncontrado != null) {
+                // Rellenar automáticamente los campos
+                codigo.setText(proveedorEncontrado.getCodigo_proveedor());
+                razon_social.setText(proveedorEncontrado.getRazon_social());
+                contacto.setText(proveedorEncontrado.getContacto());
 
-        Proveedor proveedorEditado = new Proveedor();
+                // Convertir el entero del teléfono a String para mostrarlo en el EditText
+                telefono.setText(String.valueOf(proveedorEncontrado.getTelefono()));
 
-        proveedorEditado.setCodigo_proveedor(codigo.getText().toString());
-        proveedorEditado.setRazon_social(razon_social.getText().toString());
-        proveedorEditado.setContacto(contacto.getText().toString());
-        proveedorEditado.setTelefono(Integer.parseInt(telefono.getText().toString()));
-
-        db.proveedorDao().actualizarProveedor(proveedorEditado);
-
-        Toast.makeText(this, "Proveedor actualizado correctamente", Toast.LENGTH_LONG).show();
-
+                // Bloquear la clave primaria para proteger la integridad en Room
+                codigo.setEnabled(false);
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "Error al cargar datos del proveedor: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
-    public void btnRegresar(View VIEW){
+    public void btnModificarProveedor(View view) {
+        try {
+            Proveedor proveedorEditado = new Proveedor();
+
+            proveedorEditado.setCodigo_proveedor(codigo.getText().toString());
+            proveedorEditado.setRazon_social(razon_social.getText().toString());
+            proveedorEditado.setContacto(contacto.getText().toString());
+
+            // Validación rápida para evitar un NumberFormatException si el teléfono está vacío
+            String telTexto = telefono.getText().toString().trim();
+            if (!telTexto.isEmpty()) {
+                proveedorEditado.setTelefono(Integer.parseInt(telTexto));
+            } else {
+                proveedorEditado.setTelefono(0);
+            }
+
+            db.proveedorDao().actualizarProveedor(proveedorEditado);
+
+            Toast.makeText(this, "Proveedor actualizado correctamente", Toast.LENGTH_LONG).show();
+            finish(); // Cierra la pantalla para retornar al listado
+
+        } catch (Exception e) {
+            Toast.makeText(this, "Error al actualizar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void btnRegresar(View view) {
         finish();
     }
 }

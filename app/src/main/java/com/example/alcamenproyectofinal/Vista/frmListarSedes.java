@@ -1,5 +1,6 @@
 package com.example.alcamenproyectofinal.Vista;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -47,6 +49,8 @@ public class frmListarSedes extends AppCompatActivity {
 
     private RecyclerView rvSedes;
     private AppDatabase db;
+    private List<Sede> listaSedes;
+    private SedeAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,37 +64,73 @@ public class frmListarSedes extends AppCompatActivity {
             return insets;
         });
 
-        // Inicializar Room Database
         db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "hipercorp_db").allowMainThreadQueries().build();
 
-        // Configurar RecyclerView
         rvSedes = findViewById(R.id.rvSedes);
         rvSedes.setLayoutManager(new LinearLayoutManager(this));
 
-        // Cargar sedes al abrir la pantalla
         cargarYMostrarSedes();
     }
 
-    // Método enlazado al onClick del botón en el XML
     public void btnListarSede(View view) {
         cargarYMostrarSedes();
     }
 
     private void cargarYMostrarSedes() {
         try {
-            List<Sede> lista = db.sedeDao().obtenerSedes();
+            listaSedes = db.sedeDao().obtenerSedes();
 
-            SedeAdapter adapter = new SedeAdapter(lista);
+            adapter = new SedeAdapter(listaSedes, new SedeAdapter.OnItemClickListener() {
+                @Override
+                public void onEditarClick(Sede sede, int position) {
+                    Intent intent = new Intent(frmListarSedes.this, frmModificarSedes.class);
+                    intent.putExtra("CODIGO_SEDE", sede.getCodigo_sede());
+                    startActivity(intent);
+                }
+
+                @Override
+                public void onEliminarClick(Sede sede, int position) {
+                    confirmarEliminacion(sede, position);
+                }
+            });
+
             rvSedes.setAdapter(adapter);
 
-            if (lista.isEmpty()) {
+            if (listaSedes.isEmpty()) {
                 Toast.makeText(this, "No hay sedes registradas en el sistema", Toast.LENGTH_SHORT).show();
             }
 
         } catch (Exception e) {
             Toast.makeText(this, "Error al refrescar listado: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void confirmarEliminacion(Sede sede, int position) {
+        new AlertDialog.Builder(this)
+                .setTitle("Eliminar Sede")
+                .setMessage("¿Estás seguro de eliminar la sede " + sede.getNombre() + "?")
+                .setPositiveButton("Sí, eliminar", (dialog, which) -> {
+                    try {
+                        // Eliminar de la base de datos Room
+                        db.sedeDao().eliminarSede(sede);
+                        Toast.makeText(this, "Sede eliminada correctamente", Toast.LENGTH_SHORT).show();
+
+                        // Actualizar lista local con animación
+                        listaSedes.remove(position);
+                        adapter.notifyItemRemoved(position);
+                        adapter.notifyItemRangeChanged(position, listaSedes.size());
+
+                    } catch (Exception e) {
+                        Toast.makeText(this, "Error al eliminar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("Cancelar", null)
+                .show();
+    }
+    public void btnEditarSolicitud(View view) {
+        Intent x = new Intent(this, frmModificarSedes.class);
+        startActivity(x);
     }
 
     public void btnRegresar(View view) {

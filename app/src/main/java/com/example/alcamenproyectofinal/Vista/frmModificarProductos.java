@@ -23,10 +23,9 @@ import java.util.List;
 
 public class frmModificarProductos extends AppCompatActivity {
 
-    EditText codigo, nombre, descripcion, ubicacion;
-
-    AutoCompleteTextView codigo_proveedor;
-    AppDatabase db;
+    private EditText codigo, nombre, descripcion, ubicacion;
+    private AutoCompleteTextView codigo_proveedor;
+    private AppDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,25 +33,31 @@ public class frmModificarProductos extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_frm_modificar_productos);
 
-        db = Room.databaseBuilder(getApplicationContext(),
-                AppDatabase.class, "hipercorp_db").allowMainThreadQueries().build();
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
+        // 1. Inicializar Room
+        db = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class, "hipercorp_db").allowMainThreadQueries().build();
+
+        // 2. Vincular vistas del XML
         codigo = findViewById(R.id.txtCodigoProductoMod);
         nombre = findViewById(R.id.txtNombreProductoMod);
         descripcion = findViewById(R.id.txtDescripcionProductoMod);
         ubicacion = findViewById(R.id.txtUbicacionProductoMod);
-
-        // 2. Mapeamos el ID correcto de tu XML para el AutoCompleteTextView
         codigo_proveedor = findViewById(R.id.txtCodigoProveedorProductoMod);
 
-        // 3. Cargamos los proveedores disponibles en el dropdown
+        // 3. Cargar opciones del desplegable de proveedores
         cargarProveedoresEnDropdown();
+
+        // 4. Recibir el Intent con la clave primaria y autocompletar
+        if (getIntent().hasExtra("CODIGO_PRODUCTO")) {
+            String codigoRecibido = getIntent().getStringExtra("CODIGO_PRODUCTO");
+            cargarDatosProducto(codigoRecibido);
+        }
     }
 
     private void cargarProveedoresEnDropdown() {
@@ -77,22 +82,54 @@ public class frmModificarProductos extends AppCompatActivity {
         }
     }
 
-    public void btnModificarProducto(View view){
-        Producto productoEditado = new Producto();
+    private void cargarDatosProducto(String codigoProducto) {
+        try {
+            // Buscamos el producto en Room mediante su DAO
+            Producto productoEncontrado = db.productoDao().obtenerPorId(codigoProducto);
 
-        productoEditado.setCodigo_producto(codigo.getText().toString());
-        productoEditado.setNombre(nombre.getText().toString());
-        productoEditado.setDescripcion(descripcion.getText().toString());
-        productoEditado.setUbicacion(ubicacion.getText().toString());
+            if (productoEncontrado != null) {
+                // Rellenar automáticamente las vistas
+                codigo.setText(productoEncontrado.getCodigo_producto());
+                nombre.setText(productoEncontrado.getNombre());
+                descripcion.setText(productoEncontrado.getDescripcion());
+                ubicacion.setText(productoEncontrado.getUbicacion());
 
-        productoEditado.setCodigo_proveedor(codigo_proveedor.getText().toString());
+                // Rellenar el AutoCompleteTextView sin desplegar automáticamente la lista
+                codigo_proveedor.setText(productoEncontrado.getCodigo_proveedor(), false);
 
-        db.productoDao().actualizarProducto(productoEditado);
-
-        Toast.makeText(this, "Producto actualizado correctamente", Toast.LENGTH_LONG).show();
+                // Bloquear la clave primaria
+                codigo.setEnabled(false);
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "Error al cargar el producto: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
-    public void btnRegresar(View view){
+    public void btnModificarProducto(View view) {
+        try {
+            Producto productoEditado = new Producto();
+
+            // Mantenemos la clave primaria y tomamos los valores modificados
+            productoEditado.setCodigo_producto(codigo.getText().toString());
+            productoEditado.setNombre(nombre.getText().toString());
+            productoEditado.setDescripcion(descripcion.getText().toString());
+            productoEditado.setUbicacion(ubicacion.getText().toString());
+            productoEditado.setCodigo_proveedor(codigo_proveedor.getText().toString());
+
+            // Si tienes el campo 'stock' en la entidad, es buena práctica volverlo a pasar si no lo editas aquí
+            // productoEditado.setStock(stockActual);
+
+            db.productoDao().actualizarProducto(productoEditado);
+
+            Toast.makeText(this, "Producto actualizado correctamente", Toast.LENGTH_LONG).show();
+            finish(); // Cerramos la pantalla para regresar al listado
+
+        } catch (Exception e) {
+            Toast.makeText(this, "Error al actualizar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void btnRegresar(View view) {
         finish();
     }
 }

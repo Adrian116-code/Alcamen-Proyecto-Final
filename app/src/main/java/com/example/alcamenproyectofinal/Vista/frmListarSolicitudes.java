@@ -45,15 +45,12 @@ public class frmListarSolicitudes extends AppCompatActivity {
             return insets;
         });
 
-        // Inicializar Room Database
         db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "hipercorp_db").allowMainThreadQueries().build();
 
-        // Configurar RecyclerView
         rvSolicitudes = findViewById(R.id.rvSolicitudes);
         rvSolicitudes.setLayoutManager(new LinearLayoutManager(this));
 
-        // Cargar datos al abrir la pantalla
         cargarYMostrarSolicitudes();
     }
 
@@ -65,8 +62,23 @@ public class frmListarSolicitudes extends AppCompatActivity {
         try {
             listaSolicitudesGlobal = db.solicitudDao().obtenerSolicitudes();
 
-            // Pasamos la lista y la interfaz de clic al adaptador
-            adapter = new SolicitudAdapter(listaSolicitudesGlobal, this::mostrarDialogoOpciones);
+            adapter = new SolicitudAdapter(listaSolicitudesGlobal, new SolicitudAdapter.OnItemClickListener() {
+                @Override
+                public void onItemClick(Solicitud solicitud) {
+                    mostrarDialogoOpciones(solicitud);
+                }
+
+                @Override
+                public void onEditarClick(Solicitud solicitud, int position) {
+                    aprobarSolicitudDirecto(solicitud);
+                }
+
+                @Override
+                public void onEliminarClick(Solicitud solicitud, int position) {
+                    confirmarEliminacion(solicitud, position);
+                }
+            });
+
             rvSolicitudes.setAdapter(adapter);
 
             if (listaSolicitudesGlobal.isEmpty()) {
@@ -78,26 +90,54 @@ public class frmListarSolicitudes extends AppCompatActivity {
         }
     }
 
+    // Acción rápida para el Lápiz
+    private void aprobarSolicitudDirecto(Solicitud solicitud) {
+        try {
+            db.solicitudDao().aprobarSolicitud(solicitud.getCodigo_solicitud());
+            Toast.makeText(this, "Solicitud aprobada con éxito", Toast.LENGTH_SHORT).show();
+            cargarYMostrarSolicitudes(); // Refrescar los cambios
+        } catch (Exception e) {
+            Toast.makeText(this, "Error al aprobar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    // Confirmación al presionar la X
+    private void confirmarEliminacion(Solicitud solicitud, int position) {
+        new AlertDialog.Builder(this)
+                .setTitle("Eliminar Solicitud")
+                .setMessage("¿Estás seguro de eliminar la solicitud " + solicitud.getCodigo_solicitud() + "?")
+                .setPositiveButton("Sí, eliminar", (dialog, which) -> {
+                    try {
+                        db.solicitudDao().eliminarSolicitud(solicitud);
+                        Toast.makeText(this, "Solicitud eliminada", Toast.LENGTH_SHORT).show();
+
+                        // Removemos localmente para animación fluida sin recargar todo
+                        listaSolicitudesGlobal.remove(position);
+                        adapter.notifyItemRemoved(position);
+                        adapter.notifyItemRangeChanged(position, listaSolicitudesGlobal.size());
+
+                    } catch (Exception e) {
+                        Toast.makeText(this, "Error al eliminar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setNegativeButton("Cancelar", null)
+                .show();
+    }
+
     private void mostrarDialogoOpciones(Solicitud solicitudSeleccionada) {
         AlertDialog.Builder menuOpciones = new AlertDialog.Builder(frmListarSolicitudes.this);
         menuOpciones.setTitle("Gestión de Solicitud: " + solicitudSeleccionada.getCodigo_solicitud());
         menuOpciones.setMessage("¿Qué acción deseas realizar con esta solicitud?");
 
         menuOpciones.setPositiveButton("Aprobar", (dialog, which) -> {
-            try {
-                db.solicitudDao().aprobarSolicitud(solicitudSeleccionada.getCodigo_solicitud());
-                Toast.makeText(frmListarSolicitudes.this, "Solicitud aprobada con éxito", Toast.LENGTH_SHORT).show();
-                cargarYMostrarSolicitudes(); // Refrescar los cambios
-            } catch (Exception e) {
-                Toast.makeText(frmListarSolicitudes.this, "Error al aprobar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
+            aprobarSolicitudDirecto(solicitudSeleccionada);
         });
 
         menuOpciones.setNegativeButton("Eliminar", (dialog, which) -> {
             try {
                 db.solicitudDao().eliminarSolicitud(solicitudSeleccionada);
                 Toast.makeText(frmListarSolicitudes.this, "Registro eliminado", Toast.LENGTH_SHORT).show();
-                cargarYMostrarSolicitudes(); // Refrescar los cambios
+                cargarYMostrarSolicitudes();
             } catch (Exception e) {
                 Toast.makeText(frmListarSolicitudes.this, "Error al eliminar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }

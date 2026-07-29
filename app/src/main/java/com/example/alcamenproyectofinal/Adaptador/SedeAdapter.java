@@ -3,6 +3,7 @@ package com.example.alcamenproyectofinal.Adaptador;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,17 +16,14 @@ import java.util.List;
 
 public class SedeAdapter extends RecyclerView.Adapter<SedeAdapter.ViewHolder> {
 
+    // Interfaz para manejar eventos de Editar y Eliminar
     public interface OnItemClickListener {
-        void onItemClick(Sede sede);
+        void onEditarClick(Sede sede, int position);
+        void onEliminarClick(Sede sede, int position);
     }
 
     private List<Sede> listaSedes;
     private OnItemClickListener listener;
-
-    // Constructor doble por si deseas pasar listener o solo la lista
-    public SedeAdapter(List<Sede> listaSedes) {
-        this.listaSedes = listaSedes;
-    }
 
     public SedeAdapter(List<Sede> listaSedes, OnItemClickListener listener) {
         this.listaSedes = listaSedes;
@@ -36,7 +34,7 @@ public class SedeAdapter extends RecyclerView.Adapter<SedeAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_sede, parent, false);
+                .inflate(R.layout.item_sede, parent, false); // Revisa que el layout coincida
         return new ViewHolder(view);
     }
 
@@ -44,14 +42,22 @@ public class SedeAdapter extends RecyclerView.Adapter<SedeAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Sede s = listaSedes.get(position);
 
-        // Adapta los getters según tu modelo de Sede
+        // Ajusta según los campos de tu entidad Sede
         holder.tvNombreSede.setText(s.getNombre());
         holder.tvDireccionSede.setText("Dirección: " + s.getDireccion());
         holder.tvCodigoSede.setText("Código: " + s.getCodigo_sede());
 
-        holder.itemView.setOnClickListener(v -> {
+        // Clic en el botón Lápiz (Editar)
+        holder.btnEditarSede.setOnClickListener(v -> {
             if (listener != null) {
-                listener.onItemClick(s);
+                listener.onEditarClick(s, holder.getAdapterPosition());
+            }
+        });
+
+        // Clic en el botón X (Eliminar)
+        holder.btnEliminarSede.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onEliminarClick(s, holder.getAdapterPosition());
             }
         });
     }
@@ -63,12 +69,17 @@ public class SedeAdapter extends RecyclerView.Adapter<SedeAdapter.ViewHolder> {
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvNombreSede, tvDireccionSede, tvCodigoSede;
+        ImageButton btnEditarSede, btnEliminarSede;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            // Revisa que estas IDs coincidan con tu item_sede.xml
             tvNombreSede = itemView.findViewById(R.id.tvNombreSede);
             tvDireccionSede = itemView.findViewById(R.id.tvDireccionSede);
             tvCodigoSede = itemView.findViewById(R.id.tvCodigoSede);
+
+            btnEditarSede = itemView.findViewById(R.id.btnEditarSede);
+            btnEliminarSede = itemView.findViewById(R.id.btnEliminarSede);
         }
     }
 }

@@ -23,6 +23,9 @@ public interface SolicitudDao {
     @Query("UPDATE Solicitudes SET estado = 'Aprobado' WHERE codigo_solicitud = :idSol")
     void aprobarSolicitud(String idSol);
 
+    @Query("SELECT * FROM Solicitudes WHERE codigo_solicitud = :id")
+    Solicitud obtenerPorId(String id);
+
     @Query("SELECT * FROM Solicitudes")
     List<Solicitud> obtenerTodasLasSolicitudes();
 

@@ -32,6 +32,8 @@ public class frmSolicitudes extends AppCompatActivity {
     }
 
     public void btnEliminarSolicitudes(View view){
+        Intent x = new Intent(this, frmEliminarSolicitudes.class);
+        startActivity(x);
     }
 
     public void btnRegresar(View view){

@@ -3,6 +3,7 @@ package com.example.alcamenproyectofinal.Adaptador;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,15 +16,15 @@ import java.util.List;
 
 public class SolicitudAdapter extends RecyclerView.Adapter<SolicitudAdapter.ViewHolder> {
 
-    // Interfaz para manejar el clic en cada ítem
     public interface OnItemClickListener {
         void onItemClick(Solicitud solicitud);
+        void onEditarClick(Solicitud solicitud, int position);
+        void onEliminarClick(Solicitud solicitud, int position);
     }
 
     private List<Solicitud> listaSolicitudes;
     private OnItemClickListener listener;
 
-    // Constructor que recibe tanto la lista como el listener para los clics
     public SolicitudAdapter(List<Solicitud> listaSolicitudes, OnItemClickListener listener) {
         this.listaSolicitudes = listaSolicitudes;
         this.listener = listener;
@@ -51,10 +52,24 @@ public class SolicitudAdapter extends RecyclerView.Adapter<SolicitudAdapter.View
 
         holder.tvFecha.setText("Fecha: " + s.getFecha());
 
-        // Evento para capturar el clic e invocar el diálogo en la Activity
+        // Clic en la tarjeta entera
         holder.itemView.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onItemClick(s);
+            }
+        });
+
+        // Clic en el botón Editar (Lápiz)
+        holder.btnEditar.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onEditarClick(s, holder.getAdapterPosition());
+            }
+        });
+
+        // Clic en el botón Eliminar (X)
+        holder.btnEliminar.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onEliminarClick(s, holder.getAdapterPosition());
             }
         });
     }
@@ -66,6 +81,7 @@ public class SolicitudAdapter extends RecyclerView.Adapter<SolicitudAdapter.View
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvCodigoSolicitud, tvEstado, tvProductoOperario, tvFecha;
+        ImageButton btnEditar, btnEliminar;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -73,6 +89,10 @@ public class SolicitudAdapter extends RecyclerView.Adapter<SolicitudAdapter.View
             tvEstado = itemView.findViewById(R.id.tvEstado);
             tvProductoOperario = itemView.findViewById(R.id.tvProductoOperario);
             tvFecha = itemView.findViewById(R.id.tvFecha);
+
+            // Importante: Revisa que estos IDs coincidan con tu item_solicitud.xml
+            btnEditar = itemView.findViewById(R.id.btnEditarSolicitud);
+            btnEliminar = itemView.findViewById(R.id.btnEliminarSolicitud);
         }
     }
 }

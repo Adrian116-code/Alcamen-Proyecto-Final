@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AlcamenProyectoFinal">
         <activity
+            android:name=".Vista.frmEliminarSolicitudes"
+            android:exported="false" />
+        <activity
             android:name=".Vista.frmListarDespacho"
             android:exported="false" />
         <activity

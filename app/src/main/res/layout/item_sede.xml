@@ -16,21 +16,18 @@
         android:orientation="horizontal"
         android:padding="16dp">
 
-        <!-- Barra vertical de acento azul/cyan para Sedes -->
         <View
             android:layout_width="4dp"
             android:layout_height="match_parent"
             android:background="#0EA5E9"
             android:layout_marginEnd="12dp" />
 
-        <!-- Datos de la Sede -->
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <!-- Nombre de la Sede -->
             <TextView
                 android:id="@+id/tvNombreSede"
                 android:layout_width="match_parent"
@@ -40,7 +37,6 @@
                 android:textSize="17sp"
                 android:textStyle="bold" />
 
-            <!-- Dirección -->
             <TextView
                 android:id="@+id/tvDireccionSede"
                 android:layout_width="wrap_content"
@@ -50,7 +46,6 @@
                 android:textColor="#A78BFA"
                 android:textSize="14sp" />
 
-            <!-- Código -->
             <TextView
                 android:id="@+id/tvCodigoSede"
                 android:layout_width="wrap_content"
@@ -59,6 +54,35 @@
                 android:text="Código: SEDE001"
                 android:textColor="#B3FFFFFF"
                 android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginStart="8dp">
+
+            <ImageButton
+                android:id="@+id/btnEditarSede"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:padding="6dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Editar sede"
+                android:src="@android:drawable/ic_menu_edit"
+                app:tint="#FFFFFF"/>
+
+            <ImageButton
+                android:id="@+id/btnEliminarSede"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="4dp"
+                android:padding="6dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Eliminar sede"
+                android:src="@android:drawable/ic_menu_close_clear_cancel"
+                app:tint="#FFFFFF"/>
         </LinearLayout>
 
     </LinearLayout>

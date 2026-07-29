@@ -38,11 +38,9 @@ public class frmListarDespacho extends AppCompatActivity {
             return insets;
         });
 
-        // Inicializar Room DB
         db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "hipercorp_db").allowMainThreadQueries().build();
 
-        // Vincular el RecyclerView con el nuevo ID del XML
         rvDespachos = findViewById(R.id.rvDespachos);
         rvDespachos.setLayoutManager(new LinearLayoutManager(this));
 
@@ -64,14 +62,12 @@ public class frmListarDespacho extends AppCompatActivity {
         }
     }
 
-    // ==================== NAVEGACIÓN DEL FOOTER ====================
-
     public void btnIngresoSalida(View view) {
-        // Ya te encuentras en la pantalla de lista de movimientos/despachos
+
     }
 
     public void btnSolicitudes(View view) {
-        // Intent hacia la pantalla de Solicitudes si la utilizas
+
     }
 
     public void btnRegresar(View view) {
