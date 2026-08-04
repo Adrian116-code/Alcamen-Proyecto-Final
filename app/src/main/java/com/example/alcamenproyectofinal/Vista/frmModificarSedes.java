@@ -1,5 +1,6 @@
 package com.example.alcamenproyectofinal.Vista;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -17,9 +18,11 @@ import com.example.alcamenproyectofinal.Datos.AppDatabase;
 import com.example.alcamenproyectofinal.Modelo.Producto;
 import com.example.alcamenproyectofinal.Modelo.Sede;
 import com.example.alcamenproyectofinal.R;
+import com.google.android.material.button.MaterialButton;
 
 public class frmModificarSedes extends AppCompatActivity {
 
+    private MaterialButton btnUsuarios, btnProductos, btnSedes, btnRegresar;
     private EditText codigo, nombre, direccion;
     private AppDatabase db;
 
@@ -34,6 +37,11 @@ public class frmModificarSedes extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        btnUsuarios = findViewById(R.id.btnUsuarios);
+        btnProductos = findViewById(R.id.btnProductos);
+        btnSedes = findViewById(R.id.btnSedes);
+        btnRegresar = findViewById(R.id.btnRegresar);
 
         // 1. Vincular los EditText con sus IDs
         codigo = findViewById(R.id.txtCodigoSedeMod);
@@ -83,6 +91,25 @@ public class frmModificarSedes extends AppCompatActivity {
         } catch (Exception e) {
             Toast.makeText(this, "Error al actualizar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void configurarEventos() {
+        if (btnUsuarios != null) btnUsuarios.setOnClickListener(v -> abrirUsuarios());
+        if (btnProductos != null) btnProductos.setOnClickListener(v -> abrirProductos());
+        if (btnSedes != null) btnSedes.setOnClickListener(v -> abrirSedes());
+        if (btnRegresar != null) btnRegresar.setOnClickListener(v -> finish());
+    }
+
+    private void abrirUsuarios() {
+        startActivity(new Intent(this, frmGestionUsuarios.class));
+    }
+
+    private void abrirProductos() {
+        startActivity(new Intent(this, frmGestionProductos.class));
+    }
+
+    private void abrirSedes() {
+        startActivity(new Intent(this, frmGestionSedes.class));
     }
 
     public void btnRegresar(View view) {

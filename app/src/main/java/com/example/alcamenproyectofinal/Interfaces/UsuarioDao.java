@@ -15,11 +15,15 @@ import java.util.List;
 @Dao
 public interface UsuarioDao {
 
+    @Query("SELECT COUNT(*) FROM Usuarios")
+    int obtenerCantidadUsuarios();
+
     @Query("SELECT * FROM Usuarios WHERE username = :user AND password = :pass LIMIT 1")
     Usuario login(String user, String pass);
 
-    @Query("SELECT nombres FROM Usuarios") // Ajusta el nombre de la tabla/columna según tu BD
+    @Query("SELECT nombres FROM Usuarios")
     List<String> obtenerCodigosDeOperarios();
+
 
     @Insert
     void insertarUsuario(Usuario usuario);

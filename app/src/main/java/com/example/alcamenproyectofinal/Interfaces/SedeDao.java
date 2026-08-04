@@ -14,6 +14,9 @@ import java.util.List;
 @Dao
 public interface SedeDao {
 
+    @Query("SELECT COUNT(*) FROM sedes")
+    int obtenerCantidadSedes();
+
     @Insert
     void insertarSede(Sede sede);
 

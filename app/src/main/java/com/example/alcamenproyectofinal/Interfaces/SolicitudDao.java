@@ -14,6 +14,9 @@ import java.util.List;
 @Dao
 public interface SolicitudDao {
 
+    @Query("SELECT COUNT(*) FROM solicitudes")
+    int obtenerCantidadSolicitudes();
+
     @Insert
     void insertarSolicitud(Solicitud solicitud);
 

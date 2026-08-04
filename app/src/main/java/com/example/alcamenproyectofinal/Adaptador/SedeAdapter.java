@@ -16,12 +16,10 @@ import java.util.List;
 
 public class SedeAdapter extends RecyclerView.Adapter<SedeAdapter.ViewHolder> {
 
-    // Interfaz para manejar eventos de Editar y Eliminar
     public interface OnItemClickListener {
         void onEditarClick(Sede sede, int position);
         void onEliminarClick(Sede sede, int position);
     }
-
     private List<Sede> listaSedes;
     private OnItemClickListener listener;
 
@@ -42,19 +40,16 @@ public class SedeAdapter extends RecyclerView.Adapter<SedeAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Sede s = listaSedes.get(position);
 
-        // Ajusta según los campos de tu entidad Sede
         holder.tvNombreSede.setText(s.getNombre());
         holder.tvDireccionSede.setText("Dirección: " + s.getDireccion());
         holder.tvCodigoSede.setText("Código: " + s.getCodigo_sede());
 
-        // Clic en el botón Lápiz (Editar)
         holder.btnEditarSede.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onEditarClick(s, holder.getAdapterPosition());
             }
         });
 
-        // Clic en el botón X (Eliminar)
         holder.btnEliminarSede.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onEliminarClick(s, holder.getAdapterPosition());

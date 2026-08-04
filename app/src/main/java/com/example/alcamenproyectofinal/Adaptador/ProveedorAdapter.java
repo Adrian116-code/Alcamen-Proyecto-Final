@@ -18,11 +18,9 @@ public class ProveedorAdapter extends RecyclerView.Adapter<ProveedorAdapter.View
         void onEditarClick(Proveedor proveedor, int position);
         void onEliminarClick(Proveedor proveedor, int position);
     }
-
     private List<Proveedor> listaProveedores;
     private OnItemClickListener listener;
 
-    // Constructor actualizado para recibir el listener
     public ProveedorAdapter(List<Proveedor> listaProveedores, OnItemClickListener listener) {
         this.listaProveedores = listaProveedores;
         this.listener = listener;
@@ -46,14 +44,12 @@ public class ProveedorAdapter extends RecyclerView.Adapter<ProveedorAdapter.View
         String detalles = "Teléfono: " + p.getTelefono() + " | Cód: " + p.getCodigo_proveedor();
         holder.tvDetallesProveedor.setText(detalles);
 
-        // Clic en el botón Lápiz (Editar)
         holder.btnEditarProveedor.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onEditarClick(p, holder.getAdapterPosition());
             }
         });
 
-        // Clic en el botón X (Eliminar)
         holder.btnEliminarProveedor.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onEliminarClick(p, holder.getAdapterPosition());

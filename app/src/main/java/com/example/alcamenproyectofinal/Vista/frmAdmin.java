@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -15,12 +16,17 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.alcamenproyectofinal.R;
+import com.example.alcamenproyectofinal.Datos.AppDatabase;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.button.MaterialButton;
+
+import java.util.concurrent.Executors;
 
 public class frmAdmin extends AppCompatActivity {
 
     private MaterialButton btnUsuarios, btnProductos, btnSedes, btnRegresar;
+    private TextView tvContadorUsuarios, tvContadorProductos, tvContadorSedes;
+    private AppDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +34,6 @@ public class frmAdmin extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_frm_admin);
 
-        // Ajuste de insets (evita el crash asignando listener solo si la vista existe)
         if (findViewById(R.id.main) != null) {
             ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
                 Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -37,65 +42,63 @@ public class frmAdmin extends AppCompatActivity {
             });
         }
 
-        // 2. Enlazamos los componentes por su ID en el XML
         btnUsuarios = findViewById(R.id.btnUsuarios);
         btnProductos = findViewById(R.id.btnProductos);
         btnSedes = findViewById(R.id.btnSedes);
         btnRegresar = findViewById(R.id.btnRegresar);
 
-        // 3. Asignamos los eventos de clic
+        tvContadorUsuarios = findViewById(R.id.tvContadorUsuarios);
+        tvContadorProductos = findViewById(R.id.tvContadorProductos);
+        tvContadorSedes = findViewById(R.id.tvContadorSedes);
+
+        // Instancia de Room DB
+        db = AppDatabase.getDatabase(this);
+
         configurarEventos();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        cargarContadores();
+    }
+
+    private void cargarContadores() {
+        Executors.newSingleThreadExecutor().execute(() -> {
+            int totalUsuarios = db.usuarioDao().obtenerCantidadUsuarios();
+            int totalProductos = db.productoDao().obtenerCantidadProductos();
+            int totalSedes = db.sedeDao().obtenerCantidadSedes();
+
+            runOnUiThread(() -> {
+                if (tvContadorUsuarios != null) {
+                    tvContadorUsuarios.setText(String.valueOf(totalUsuarios));
+                }
+                if (tvContadorProductos != null) {
+                    tvContadorProductos.setText(String.valueOf(totalProductos));
+                }
+                if (tvContadorSedes != null) {
+                    tvContadorSedes.setText(String.valueOf(totalSedes));
+                }
+            });
+        });
+    }
+
     private void configurarEventos() {
-        if (btnUsuarios != null) {
-            btnUsuarios.setOnClickListener(v -> abrirUsuarios());
-        }
-
-        if (btnProductos != null) {
-            btnProductos.setOnClickListener(v -> abrirProductos());
-        }
-
-        if (btnSedes != null) {
-            btnSedes.setOnClickListener(v -> abrirSedes());
-        }
-
-        if (btnRegresar != null) {
-            btnRegresar.setOnClickListener(v -> finish());
-        }
+        if (btnUsuarios != null) btnUsuarios.setOnClickListener(v -> abrirUsuarios());
+        if (btnProductos != null) btnProductos.setOnClickListener(v -> abrirProductos());
+        if (btnSedes != null) btnSedes.setOnClickListener(v -> abrirSedes());
+        if (btnRegresar != null) btnRegresar.setOnClickListener(v -> finish());
     }
 
     private void abrirUsuarios() {
-        Intent x = new Intent(this, frmGestionUsuarios.class);
-        startActivity(x);
+        startActivity(new Intent(this, frmGestionUsuarios.class));
     }
 
     private void abrirProductos() {
-        Intent x = new Intent(this, frmGestionProductos.class);
-        startActivity(x);
+        startActivity(new Intent(this, frmGestionProductos.class));
     }
 
     private void abrirSedes() {
-        Intent x = new Intent(this, frmGestionSedes.class);
-        startActivity(x);
-    }
-
-    public void btnGestionUsuarios(View view){
-        Intent x = new Intent(this, frmGestionUsuarios.class);
-        startActivity(x);
-    }
-
-    public void btnGestionProductos(View view){
-        Intent x = new Intent(this, frmGestionProductos.class);
-        startActivity(x);
-    }
-
-    public void btnGestionarSedes(View view){
-        Intent x = new Intent(this, frmGestionSedes.class);
-        startActivity(x);
-    }
-
-    public void btnRegresar(View view){
-        finish();
+        startActivity(new Intent(this, frmGestionSedes.class));
     }
 }

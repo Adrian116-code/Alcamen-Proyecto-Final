@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/main"
+    android:fitsSystemWindows="true"
     android:background="#1E1B4B">
 
     <!-- ==================== HEADER ==================== -->
@@ -18,74 +19,46 @@
         app:titleTextAppearance="@style/ToolbarTitleStyle"
         app:titleTextColor="@android:color/white" />
 
-    <!-- ==================== CONTENIDO CENTRAL ==================== -->
+    <!-- ==================== LISTA DE PRODUCTOS ==================== -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/footerOperarioAlmacen"
         android:layout_below="@id/headerOperarioAlmacen"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:text="Operario Almacén"
+            android:layout_marginBottom="12dp"
+            android:text="Lista de Productos"
             android:textColor="@android:color/white"
-            android:textSize="32sp"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
-        <GridLayout
+        <!-- LISTA RECYCLERVIEW VERTICAL -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvProductos"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scrollbars="vertical" />
+
+        <TextView
+            android:id="@+id/tvSinProductos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:columnCount="2"
-            android:rowCount="2">
-
-            <!-- Fila 1 -->
-
-            <!-- Fila 2: Botón Regresar abarcando ambas columnas -->
-
-            <Button
-                android:id="@+id/btnInsertarSolicitudes"
-                android:layout_width="140dp"
-                android:layout_height="100dp"
-                android:layout_row="0"
-                android:layout_column="1"
-                android:layout_margin="8dp"
-                android:backgroundTint="#5C429B"
-                android:textColor="@color/white"
-                android:text="Insertar\nSolicitudes" />
-
-            <Button
-                android:id="@+id/btnRegresarCentral"
-                android:layout_width="296dp"
-                android:layout_height="90dp"
-                android:layout_row="1"
-                android:layout_column="0"
-                android:layout_columnSpan="2"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="8dp"
-                android:backgroundTint="#5C429B"
-                android:textColor="@color/white"
-                android:text="Regresar" />
-
-            <Button
-                android:id="@+id/btnIngresoSalidaProductos"
-                android:layout_width="140dp"
-                android:layout_height="100dp"
-                android:layout_row="0"
-                android:layout_column="0"
-                android:layout_margin="8dp"
-                android:backgroundTint="#5C429B"
-                android:textColor="@color/white"
-                android:text="Ingreso/Salida\nProductos" />
-
-        </GridLayout>
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:text="No hay productos registrados."
+            android:textColor="#D0C7EF"
+            android:textSize="14sp"
+            android:visibility="gone" />
 
     </LinearLayout>
 
-    <!-- ==================== FOOTER (3 ICONOS) ==================== -->
+    <!-- ==================== FOOTER ==================== -->
     <LinearLayout
         android:id="@+id/footerOperarioAlmacen"
         android:layout_width="match_parent"
@@ -97,7 +70,6 @@
         android:paddingHorizontal="2dp"
         android:paddingVertical="4dp">
 
-        <!-- INGRESO / SALIDA -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnIngresoSalida"
             style="@style/Widget.MaterialComponents.Button.TextButton"
@@ -116,7 +88,6 @@
             app:iconTint="@android:color/white"
             app:textAllCaps="false" />
 
-        <!-- INSERTAR SOLICITUDES -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSolicitudes"
             style="@style/Widget.MaterialComponents.Button.TextButton"
@@ -135,7 +106,6 @@
             app:iconTint="@android:color/white"
             app:textAllCaps="false" />
 
-        <!-- REGRESAR -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnRegresar"
             style="@style/Widget.MaterialComponents.Button.TextButton"

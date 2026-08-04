@@ -1,5 +1,6 @@
 package com.example.alcamenproyectofinal.Vista;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +20,7 @@ import com.example.alcamenproyectofinal.Adaptador.UsuarioAdapter;
 import com.example.alcamenproyectofinal.Datos.AppDatabase;
 import com.example.alcamenproyectofinal.Modelo.Usuario;
 import com.example.alcamenproyectofinal.R;
+import com.google.android.material.button.MaterialButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,6 +29,8 @@ import org.json.JSONObject;
 import java.util.List;
 
 public class frmListarUsuarios extends AppCompatActivity {
+
+    private MaterialButton btnUsuarios, btnProductos, btnSedes, btnRegresar;
 
     private RecyclerView rvUsuarios;
 
@@ -42,11 +46,14 @@ public class frmListarUsuarios extends AppCompatActivity {
             return insets;
         });
 
-        // 1. Vincular el RecyclerView del XML y asignarle un Manager lineal
+        btnUsuarios = findViewById(R.id.btnUsuarios);
+        btnProductos = findViewById(R.id.btnProductos);
+        btnSedes = findViewById(R.id.btnSedes);
+        btnRegresar = findViewById(R.id.btnRegresar);
+
         rvUsuarios = findViewById(R.id.rvUsuarios);
         rvUsuarios.setLayoutManager(new LinearLayoutManager(this));
 
-        // 2. Cargar los datos inmediatamente al iniciar la pantalla
         cargarListaUsuarios();
     }
 
@@ -64,6 +71,25 @@ public class frmListarUsuarios extends AppCompatActivity {
 
     public void btnListarUsuarioss(View view) {
         cargarListaUsuarios();
+    }
+
+    private void configurarEventos() {
+        if (btnUsuarios != null) btnUsuarios.setOnClickListener(v -> abrirUsuarios());
+        if (btnProductos != null) btnProductos.setOnClickListener(v -> abrirProductos());
+        if (btnSedes != null) btnSedes.setOnClickListener(v -> abrirSedes());
+        if (btnRegresar != null) btnRegresar.setOnClickListener(v -> finish());
+    }
+
+    private void abrirUsuarios() {
+        startActivity(new Intent(this, frmGestionUsuarios.class));
+    }
+
+    private void abrirProductos() {
+        startActivity(new Intent(this, frmGestionProductos.class));
+    }
+
+    private void abrirSedes() {
+        startActivity(new Intent(this, frmGestionSedes.class));
     }
 
     public void btnRegresar(View view) {

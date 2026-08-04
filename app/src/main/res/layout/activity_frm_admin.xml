@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/main"
+    android:fitsSystemWindows="true"
     android:background="#1E1B4B">
 
+    <!-- HEADER TOOLBAR -->
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/headerAdmin"
         android:layout_width="match_parent"
@@ -14,24 +16,26 @@
         android:background="#5C429B"
         app:title="Administración"
         app:titleCentered="true"
-        app:titleTextColor="@android:color/white"
-        app:titleTextAppearance="@style/ToolbarTitleStyle" />
+        app:titleTextAppearance="@style/ToolbarTitleStyle"
+        app:titleTextColor="@android:color/white" />
 
+    <!-- CONTENEDOR CENTRAL: DASHBOARD DE CONTADORES -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/headerAdmin"
         android:layout_above="@id/footerAdmin"
+        android:layout_below="@id/headerAdmin"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:text="Admin"
+            android:text="Resumen General"
             android:textColor="@android:color/white"
-            android:textSize="32sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
         <GridLayout
@@ -40,46 +44,137 @@
             android:columnCount="2"
             android:rowCount="2">
 
-            <Button
-                android:id="@+id/btnGestionarUsuarios"
-                android:layout_width="140dp"
-                android:layout_height="110dp"
+            <!-- 1. TARJETA CONTADOR USUARIOS -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="145dp"
+                android:layout_height="135dp"
                 android:layout_margin="8dp"
-                android:backgroundTint="#5C429B"
-                android:text="Gestionar\nUsuarios"
-                android:textColor="@android:color/white"/>
+                app:cardBackgroundColor="#5C429B"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="6dp"
+                app:strokeWidth="0dp">
 
-            <Button
-                android:id="@+id/btnGestionarProductos"
-                android:layout_width="140dp"
-                android:layout_height="110dp"
-                android:layout_margin="8dp"
-                android:backgroundTint="#5C429B"
-                android:text="Gestionar\nProductos"
-                android:textColor="@android:color/white"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="12dp">
 
-            <Button
-                android:id="@+id/btnGestionarSedes"
-                android:layout_width="140dp"
-                android:layout_height="110dp"
-                android:layout_margin="8dp"
-                android:backgroundTint="#5C429B"
-                android:text="Gestionar\nSedes"
-                android:textColor="@android:color/white"/>
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/ic_people"
+                        app:tint="@android:color/white" />
 
-            <Button
-                android:id="@+id/btnRegresarCentral"
-                android:layout_width="140dp"
-                android:layout_height="110dp"
+                    <TextView
+                        android:id="@+id/tvContadorUsuarios"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="0"
+                        android:textColor="@android:color/white"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Usuarios Registrados"
+                        android:textColor="#D0C7EF"
+                        android:textSize="11sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 2. TARJETA CONTADOR PRODUCTOS -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="145dp"
+                android:layout_height="135dp"
                 android:layout_margin="8dp"
-                android:backgroundTint="#5C429B"
-                android:text="Regresar"
-                android:textColor="@android:color/white"/>
+                app:cardBackgroundColor="#5C429B"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="6dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/ic_inventory"
+                        app:tint="@android:color/white" />
+
+                    <TextView
+                        android:id="@+id/tvContadorProductos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="0"
+                        android:textColor="@android:color/white"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Productos Registrados"
+                        android:textColor="#D0C7EF"
+                        android:textSize="11sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 3. TARJETA CONTADOR SEDES -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="145dp"
+                android:layout_height="135dp"
+                android:layout_margin="8dp"
+                app:cardBackgroundColor="#5C429B"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="6dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/ic_location_city"
+                        app:tint="@android:color/white" />
+
+                    <TextView
+                        android:id="@+id/tvContadorSedes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="0"
+                        android:textColor="@android:color/white"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sedes Registradas"
+                        android:textColor="#D0C7EF"
+                        android:textSize="11sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
         </GridLayout>
 
     </LinearLayout>
 
+    <!-- FOOTER INTACTO (Navegación) -->
     <LinearLayout
         android:id="@+id/footerAdmin"
         android:layout_width="match_parent"

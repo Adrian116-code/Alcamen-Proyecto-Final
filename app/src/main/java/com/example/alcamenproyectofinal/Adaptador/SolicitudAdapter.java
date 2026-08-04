@@ -52,21 +52,18 @@ public class SolicitudAdapter extends RecyclerView.Adapter<SolicitudAdapter.View
 
         holder.tvFecha.setText("Fecha: " + s.getFecha());
 
-        // Clic en la tarjeta entera
         holder.itemView.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onItemClick(s);
             }
         });
 
-        // Clic en el botón Editar (Lápiz)
         holder.btnEditar.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onEditarClick(s, holder.getAdapterPosition());
             }
         });
 
-        // Clic en el botón Eliminar (X)
         holder.btnEliminar.setOnClickListener(v -> {
             if (listener != null) {
                 listener.onEliminarClick(s, holder.getAdapterPosition());

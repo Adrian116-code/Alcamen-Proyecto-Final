@@ -33,7 +33,6 @@ public class DespachoAdapter extends RecyclerView.Adapter<DespachoAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Despacho_Sede d = listaDespachos.get(position);
 
-        // Usamos los getters correspondientes a tu clase Despacho_Sede
         holder.tvCodigo.setText("Código Despacho: " + (d.getCodigo_despacho() != null ? d.getCodigo_despacho() : ""));
         holder.tvOperario.setText("Operario: " + (d.getCodigo_operario() != null ? d.getCodigo_operario() : "null"));
         holder.tvProducto.setText("Producto: " + (d.getCodigo_producto() != null ? d.getCodigo_producto() : ""));

@@ -42,10 +42,13 @@ import com.example.alcamenproyectofinal.Adaptador.SedeAdapter;
 import com.example.alcamenproyectofinal.Datos.AppDatabase;
 import com.example.alcamenproyectofinal.Modelo.Sede;
 import com.example.alcamenproyectofinal.R;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.List;
 
 public class frmListarSedes extends AppCompatActivity {
+
+    private MaterialButton btnUsuarios, btnProductos, btnSedes, btnRegresar;
 
     private RecyclerView rvSedes;
     private AppDatabase db;
@@ -63,6 +66,11 @@ public class frmListarSedes extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        btnUsuarios = findViewById(R.id.btnUsuarios);
+        btnProductos = findViewById(R.id.btnProductos);
+        btnSedes = findViewById(R.id.btnSedes);
+        btnRegresar = findViewById(R.id.btnRegresar);
 
         db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "hipercorp_db").allowMainThreadQueries().build();
@@ -131,6 +139,25 @@ public class frmListarSedes extends AppCompatActivity {
     public void btnEditarSolicitud(View view) {
         Intent x = new Intent(this, frmModificarSedes.class);
         startActivity(x);
+    }
+
+    private void configurarEventos() {
+        if (btnUsuarios != null) btnUsuarios.setOnClickListener(v -> abrirUsuarios());
+        if (btnProductos != null) btnProductos.setOnClickListener(v -> abrirProductos());
+        if (btnSedes != null) btnSedes.setOnClickListener(v -> abrirSedes());
+        if (btnRegresar != null) btnRegresar.setOnClickListener(v -> finish());
+    }
+
+    private void abrirUsuarios() {
+        startActivity(new Intent(this, frmGestionUsuarios.class));
+    }
+
+    private void abrirProductos() {
+        startActivity(new Intent(this, frmGestionProductos.class));
+    }
+
+    private void abrirSedes() {
+        startActivity(new Intent(this, frmGestionSedes.class));
     }
 
     public void btnRegresar(View view) {

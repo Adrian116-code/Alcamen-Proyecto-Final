@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -13,52 +14,75 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.alcamenproyectofinal.Datos.AppDatabase;
 import com.example.alcamenproyectofinal.R;
 import com.google.android.material.button.MaterialButton;
 
+import java.util.concurrent.Executors;
+
 public class frmJefeAlmacen extends AppCompatActivity {
 
-    private Button btnGestionarSolicitudes, btnGestionarProveedores, btnListarDespacho, btnRegresarCentral;
-
     private MaterialButton btnSolicitudes, btnProveedores, btnDespacho, btnRegresar;
+
+    private TextView tvContadorSolicitudes, tvContadorProveedores;
+
+    // Instancia de Room DB
+    private AppDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_frm_jefe_almacen);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        btnGestionarSolicitudes = findViewById(R.id.btnGestionarSolicitudes);
-        btnGestionarProveedores = findViewById(R.id.btnGestionarProveedores);
-        btnListarDespacho = findViewById(R.id.btnListarDespacho);
-        btnRegresarCentral = findViewById(R.id.btnRegresarCentral);
-
         btnSolicitudes = findViewById(R.id.btnSolicitudes);
         btnProveedores = findViewById(R.id.btnProveedores);
         btnDespacho = findViewById(R.id.btnDespacho);
         btnRegresar = findViewById(R.id.btnRegresar);
 
+        // 2. Inicializar Contadores del Dashboard
+        tvContadorSolicitudes = findViewById(R.id.tvContadorSolicitudes);
+        tvContadorProveedores = findViewById(R.id.tvContadorProveedores);
+
+        // 3. Obtener Instancia de la Base de Datos
+        db = AppDatabase.getDatabase(this);
+
         configurarEventos();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        cargarContadores();
+    }
+
+    private void cargarContadores() {
+        Executors.newSingleThreadExecutor().execute(() -> {
+            int totalSolicitudes = db.solicitudDao().obtenerCantidadSolicitudes();
+            int totalProveedores = db.proveedorDao().obtenerCantidadProveedores();
+
+            runOnUiThread(() -> {
+                if (tvContadorSolicitudes != null) {
+                    tvContadorSolicitudes.setText(String.valueOf(totalSolicitudes));
+                }
+                if (tvContadorProveedores != null) {
+                    tvContadorProveedores.setText(String.valueOf(totalProveedores));
+                }
+            });
+        });
+    }
+
     private void configurarEventos() {
-
-        btnGestionarSolicitudes.setOnClickListener(v -> abrirSolicitudes());
-        btnSolicitudes.setOnClickListener(v -> abrirSolicitudes());
-
-        btnGestionarProveedores.setOnClickListener(v -> abrirProveedores());
-        btnProveedores.setOnClickListener(v -> abrirProveedores());
-
-        btnListarDespacho.setOnClickListener(v -> abrirDespacho());
-        btnDespacho.setOnClickListener(v -> abrirDespacho());
-
-        btnRegresarCentral.setOnClickListener(v -> finish());
-        btnRegresar.setOnClickListener(v -> finish());
+        if (btnSolicitudes != null) btnSolicitudes.setOnClickListener(v -> abrirSolicitudes());
+        if (btnProveedores != null) btnProveedores.setOnClickListener(v -> abrirProveedores());
+        if (btnDespacho != null) btnDespacho.setOnClickListener(v -> abrirDespacho());
+        if (btnRegresar != null) btnRegresar.setOnClickListener(v -> finish());
     }
 
     private void abrirSolicitudes() {
@@ -74,30 +98,5 @@ public class frmJefeAlmacen extends AppCompatActivity {
     private void abrirDespacho() {
         Intent intent = new Intent(this, frmListarDespacho.class);
         startActivity(intent);
-    }
-
-    public void btnGestionarProductos(View view){
-        Intent x = new Intent(this, frmGestionProductos.class);
-        startActivity(x);
-    }
-
-    public void btnGestionarSolicitudes(View view){
-        Intent x = new Intent(this, frmGestionSolicitudes.class);
-        startActivity(x);
-    }
-
-    public void btnGestionarProveedores(View view){
-        Intent x = new Intent(this, frmGestionProveedores.class);
-        startActivity(x);
-    }
-
-    public void btnListarDespacho(View view){
-        Intent x = new Intent(this,frmListarDespacho.class);
-        startActivity(x);
-
-    }
-
-    public void btnRegresar(View view){
-        finish();
     }
 }

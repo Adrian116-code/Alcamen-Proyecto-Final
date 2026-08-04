@@ -68,7 +68,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/footerEliminarProductos"
+        android:id="@+id/footerAdmin"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="#1F1A3D"
@@ -98,7 +98,7 @@
             android:id="@+id/btnProductos"
             style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:layout_marginHorizontal="4dp"
             android:layout_weight="1"
             android:text="Productos"

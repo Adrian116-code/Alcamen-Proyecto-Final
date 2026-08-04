@@ -1,5 +1,6 @@
 package com.example.alcamenproyectofinal.Vista;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -17,11 +18,14 @@ import androidx.room.Room;
 import com.example.alcamenproyectofinal.Datos.AppDatabase;
 import com.example.alcamenproyectofinal.Modelo.Producto;
 import com.example.alcamenproyectofinal.R;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class frmInsertarProductos extends AppCompatActivity {
+
+    private MaterialButton btnUsuarios, btnProductos, btnSedes, btnRegresar;
 
     EditText codigo, nombre, descripcion, ubicacion;
 
@@ -40,6 +44,11 @@ public class frmInsertarProductos extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        btnUsuarios = findViewById(R.id.btnUsuarios);
+        btnProductos = findViewById(R.id.btnProductos);
+        btnSedes = findViewById(R.id.btnSedes);
+        btnRegresar = findViewById(R.id.btnRegresar);
 
         codigo = findViewById(R.id.txtCodigoProducto);
         nombre = findViewById(R.id.txtNombre);
@@ -86,6 +95,25 @@ public class frmInsertarProductos extends AppCompatActivity {
         nuevoProducto.setStock(0);
         db.productoDao().insertarProducto(nuevoProducto);
         Toast.makeText(this, "Producto guardado en Room", Toast.LENGTH_LONG).show();
+    }
+
+    private void configurarEventos() {
+        if (btnUsuarios != null) btnUsuarios.setOnClickListener(v -> abrirUsuarios());
+        if (btnProductos != null) btnProductos.setOnClickListener(v -> abrirProductos());
+        if (btnSedes != null) btnSedes.setOnClickListener(v -> abrirSedes());
+        if (btnRegresar != null) btnRegresar.setOnClickListener(v -> finish());
+    }
+
+    private void abrirUsuarios() {
+        startActivity(new Intent(this, frmGestionUsuarios.class));
+    }
+
+    private void abrirProductos() {
+        startActivity(new Intent(this, frmGestionProductos.class));
+    }
+
+    private void abrirSedes() {
+        startActivity(new Intent(this, frmGestionSedes.class));
     }
 
     public void btnRegresar(View view){

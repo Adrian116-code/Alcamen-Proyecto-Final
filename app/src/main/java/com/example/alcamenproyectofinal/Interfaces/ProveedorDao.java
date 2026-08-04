@@ -13,6 +13,9 @@ import java.util.List;
 @Dao
 public interface ProveedorDao {
 
+    @Query("SELECT COUNT(*) FROM proveedores")
+    int obtenerCantidadProveedores();
+
     @Insert
     void insertarProveedor(Proveedor proveedor);
 
