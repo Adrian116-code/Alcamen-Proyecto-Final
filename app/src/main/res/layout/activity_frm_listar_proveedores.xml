@@ -53,8 +53,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:onClick="btnListarProveedor"
-            android:text="Refrescar Lista" />
+            android:onClick="btnInsertarProveedores"
+            android:text="Insertar Proveedores" />
 
         <Button
             android:id="@+id/button55"

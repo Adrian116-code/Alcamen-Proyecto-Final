@@ -59,6 +59,8 @@ public class frmListarProductos extends AppCompatActivity {
         rvProductos.setLayoutManager(new LinearLayoutManager(this));
 
         cargarListaProductos();
+
+        configurarEventos();
     }
 
     private void cargarListaProductos() {
@@ -96,11 +98,9 @@ public class frmListarProductos extends AppCompatActivity {
                 .setMessage("¿Estás seguro de eliminar el producto " + producto.getNombre() + "?")
                 .setPositiveButton("Sí, eliminar", (dialog, which) -> {
                     try {
-                        // Eliminar de la base de datos Room
                         db.productoDao().eliminarProducto(producto);
                         Toast.makeText(this, "Producto eliminado correctamente", Toast.LENGTH_SHORT).show();
 
-                        // Actualizar lista local con animación
                         listaProductos.remove(position);
                         adapter.notifyItemRemoved(position);
                         adapter.notifyItemRangeChanged(position, listaProductos.size());
@@ -113,8 +113,9 @@ public class frmListarProductos extends AppCompatActivity {
                 .show();
     }
 
-    public void btnListarProducto(View view) {
-        cargarListaProductos();
+    public void btnInsertarProductos(View view){
+        Intent x = new Intent(this, frmInsertarProductos.class);
+        startActivity(x);
     }
 
     private void configurarEventos() {

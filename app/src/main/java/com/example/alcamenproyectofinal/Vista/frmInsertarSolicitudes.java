@@ -1,5 +1,6 @@
 package com.example.alcamenproyectofinal.Vista;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -17,11 +18,14 @@ import androidx.room.Room;
 import com.example.alcamenproyectofinal.Datos.AppDatabase;
 import com.example.alcamenproyectofinal.Modelo.Solicitud;
 import com.example.alcamenproyectofinal.R;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class frmInsertarSolicitudes extends AppCompatActivity {
+
+    private MaterialButton btnIngresoSalida, btnSolicitudes, btnRegresar;
 
     EditText codigo, fecha;
 
@@ -49,6 +53,12 @@ public class frmInsertarSolicitudes extends AppCompatActivity {
 
         cargarDropdownProductos();
         cargarDropdownOperarios();
+
+        btnIngresoSalida = findViewById(R.id.btnIngresoSalida);
+        btnSolicitudes = findViewById(R.id.btnSolicitudes);
+        btnRegresar = findViewById(R.id.btnRegresar);
+
+        configurarEventos();
     }
 
     private void cargarDropdownProductos() {
@@ -100,6 +110,22 @@ public class frmInsertarSolicitudes extends AppCompatActivity {
 
         Toast.makeText(this, "Solicitud guardada en Room", Toast.LENGTH_LONG).show();
         finish();
+    }
+
+    private void configurarEventos() {
+        if (btnIngresoSalida != null) {
+            btnIngresoSalida.setOnClickListener(v ->
+                    startActivity(new Intent(this, frmCantidadProductos.class)));
+        }
+
+        if (btnSolicitudes != null) {
+            btnSolicitudes.setOnClickListener(v ->
+                    startActivity(new Intent(this, frmInsertarSolicitudes.class)));
+        }
+
+        if (btnRegresar != null) {
+            btnRegresar.setOnClickListener(v -> finish());
+        }
     }
 
     public void btnRegresar(View view){

@@ -41,6 +41,8 @@ public class frmEliminarSedes extends AppCompatActivity {
         btnRegresar = findViewById(R.id.btnRegresar);
 
         codigo = findViewById(R.id.txtCodigoSedeEliminar);
+
+        configurarEventos();
     }
 
     public void btnEliminarSede(View view){

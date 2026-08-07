@@ -21,11 +21,13 @@ import com.example.alcamenproyectofinal.Datos.AppDatabase;
 import com.example.alcamenproyectofinal.Modelo.Producto;
 import com.example.alcamenproyectofinal.Modelo.Proveedor;
 import com.example.alcamenproyectofinal.R;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.List;
 
 public class frmListarProveedores extends AppCompatActivity {
 
+    private MaterialButton btnSolicitudes, btnProveedores, btnDespacho, btnRegresar;
     private RecyclerView rvProveedores;
     private AppDatabase db;
     private List<Proveedor> listaProveedores;
@@ -43,35 +45,35 @@ public class frmListarProveedores extends AppCompatActivity {
             return insets;
         });
 
-        // Inicializar Room Database
         db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "hipercorp_db").allowMainThreadQueries().build();
 
-        // Configurar RecyclerView
-        rvProveedores = findViewById(R.id.rvProveedores); // Revisa el ID en tu XML
+        rvProveedores = findViewById(R.id.rvProveedores);
         rvProveedores.setLayoutManager(new LinearLayoutManager(this));
 
-        // Cargar proveedores al iniciar
         cargarListaProveedores();
+
+        btnSolicitudes = findViewById(R.id.btnSolicitudes);
+        btnProveedores = findViewById(R.id.btnProveedores);
+        btnDespacho = findViewById(R.id.btnDespacho);
+        btnRegresar = findViewById(R.id.btnRegresar);
+
+        configurarEventos();
     }
 
     private void cargarListaProveedores() {
         try {
             listaProveedores = db.proveedorDao().obtenerProveedores();
 
-            // Pasamos la lista Y el OnItemClickListener que ahora requiere el adaptador
             adapter = new ProveedorAdapter(listaProveedores, new ProveedorAdapter.OnItemClickListener() {
                 @Override
                 public void onEditarClick(Proveedor proveedor, int position) {
-                    // Clic en el LÁPIZ: Abre la pantalla de modificación enviando la clave primaria
                     Intent intent = new Intent(frmListarProveedores.this, frmModificarProveedores.class);
                     intent.putExtra("CODIGO_PROVEEDOR", proveedor.getCodigo_proveedor());
                     startActivity(intent);
                 }
-
                 @Override
                 public void onEliminarClick(Proveedor proveedor, int position) {
-                    // Clic en la X: Pide confirmación para eliminar de Room
                     confirmarEliminacion(proveedor, position);
                 }
             });
@@ -96,7 +98,6 @@ public class frmListarProveedores extends AppCompatActivity {
                         db.proveedorDao().eliminarProveedor(proveedor);
                         Toast.makeText(this, "Proveedor eliminado correctamente", Toast.LENGTH_SHORT).show();
 
-                        // Remover de la lista local con animación
                         listaProveedores.remove(position);
                         adapter.notifyItemRemoved(position);
                         adapter.notifyItemRangeChanged(position, listaProveedores.size());
@@ -109,8 +110,31 @@ public class frmListarProveedores extends AppCompatActivity {
                 .show();
     }
 
-    public void btnListarProveedor(View view) {
-        cargarListaProveedores();
+    public void btnInsertarProveedores(View view) {
+        Intent intent = new Intent(this, frmInsertarProveedores.class);
+        startActivity(intent);
+    }
+
+    private void configurarEventos() {
+        if (btnSolicitudes != null) btnSolicitudes.setOnClickListener(v -> abrirSolicitudes());
+        if (btnProveedores != null) btnProveedores.setOnClickListener(v -> abrirProveedores());
+        if (btnDespacho != null) btnDespacho.setOnClickListener(v -> abrirDespacho());
+        if (btnRegresar != null) btnRegresar.setOnClickListener(v -> finish());
+    }
+
+    private void abrirSolicitudes() {
+        Intent intent = new Intent(this, frmListarSolicitudes.class);
+        startActivity(intent);
+    }
+
+    private void abrirProveedores() {
+        Intent intent = new Intent(this, frmGestionProveedores.class);
+        startActivity(intent);
+    }
+
+    private void abrirDespacho() {
+        Intent intent = new Intent(this, frmListarDespacho.class);
+        startActivity(intent);
     }
 
     public void btnRegresar(View view) {

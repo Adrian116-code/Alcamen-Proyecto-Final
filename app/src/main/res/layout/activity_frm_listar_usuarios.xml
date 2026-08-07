@@ -49,15 +49,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:onClick="btnListarUsuarioss"
-            android:text="Refrescar Lista" />
-
-        <Button
-            android:id="@+id/button31"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="btnRegresar"
-            android:text="Regresar" />
+            android:onClick="btnInsertarUsuarios"
+            android:text="Insertar Usuarios" />
     </LinearLayout>
 
     <LinearLayout

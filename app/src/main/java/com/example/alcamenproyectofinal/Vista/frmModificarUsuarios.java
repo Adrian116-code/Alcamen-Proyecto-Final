@@ -66,6 +66,8 @@ public class frmModificarUsuarios extends AppCompatActivity {
         edad = findViewById(R.id.txtEdadMod);
         username = findViewById(R.id.txtUsernameMod);
         password = findViewById(R.id.txtPasswordMod);
+
+        configurarEventos();
     }
 
     public void btnModificarUsuario(View view){

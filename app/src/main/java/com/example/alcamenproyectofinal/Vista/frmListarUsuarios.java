@@ -55,22 +55,18 @@ public class frmListarUsuarios extends AppCompatActivity {
         rvUsuarios.setLayoutManager(new LinearLayoutManager(this));
 
         cargarListaUsuarios();
+
+        configurarEventos();
     }
 
     private void cargarListaUsuarios() {
-        // Consulta a Room
         AppDatabase db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "hipercorp_db").allowMainThreadQueries().build();
 
         List<Usuario> lista = db.usuarioDao().obtenerUsuarios();
 
-        // Asignar el adaptador con los datos recuperados
         UsuarioAdapter adapter = new UsuarioAdapter(lista);
         rvUsuarios.setAdapter(adapter);
-    }
-
-    public void btnListarUsuarioss(View view) {
-        cargarListaUsuarios();
     }
 
     private void configurarEventos() {
@@ -79,6 +75,12 @@ public class frmListarUsuarios extends AppCompatActivity {
         if (btnSedes != null) btnSedes.setOnClickListener(v -> abrirSedes());
         if (btnRegresar != null) btnRegresar.setOnClickListener(v -> finish());
     }
+
+    public void btnInsertarUsuarios(View view){
+        Intent x = new Intent(this, frmInsertarUsuarios.class);
+        startActivity(x);
+    }
+
 
     private void abrirUsuarios() {
         startActivity(new Intent(this, frmGestionUsuarios.class));

@@ -26,7 +26,6 @@ public class frmJefeAlmacen extends AppCompatActivity {
 
     private TextView tvContadorSolicitudes, tvContadorProveedores;
 
-    // Instancia de Room DB
     private AppDatabase db;
 
     @Override
@@ -46,11 +45,9 @@ public class frmJefeAlmacen extends AppCompatActivity {
         btnDespacho = findViewById(R.id.btnDespacho);
         btnRegresar = findViewById(R.id.btnRegresar);
 
-        // 2. Inicializar Contadores del Dashboard
         tvContadorSolicitudes = findViewById(R.id.tvContadorSolicitudes);
         tvContadorProveedores = findViewById(R.id.tvContadorProveedores);
 
-        // 3. Obtener Instancia de la Base de Datos
         db = AppDatabase.getDatabase(this);
 
         configurarEventos();

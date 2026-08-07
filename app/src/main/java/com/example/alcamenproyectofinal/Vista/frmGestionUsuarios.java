@@ -32,6 +32,8 @@ public class frmGestionUsuarios extends AppCompatActivity {
         btnProductos = findViewById(R.id.btnProductos);
         btnSedes = findViewById(R.id.btnSedes);
         btnRegresar = findViewById(R.id.btnRegresar);
+
+        configurarEventos();
     }
 
     public void btnInsertarUsuarios(View view){

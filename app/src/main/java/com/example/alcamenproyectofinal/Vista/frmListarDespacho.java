@@ -1,5 +1,6 @@
 package com.example.alcamenproyectofinal.Vista;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -18,11 +19,13 @@ import com.example.alcamenproyectofinal.Adaptador.DespachoAdapter;
 import com.example.alcamenproyectofinal.Datos.AppDatabase;
 import com.example.alcamenproyectofinal.Modelo.Despacho_Sede;
 import com.example.alcamenproyectofinal.R;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.List;
 
 public class frmListarDespacho extends AppCompatActivity {
 
+    private MaterialButton btnSolicitudes, btnProveedores, btnDespacho, btnRegresar;
     RecyclerView rvDespachos;
     AppDatabase db;
 
@@ -45,6 +48,13 @@ public class frmListarDespacho extends AppCompatActivity {
         rvDespachos.setLayoutManager(new LinearLayoutManager(this));
 
         cargarDespachos();
+
+        btnSolicitudes = findViewById(R.id.btnSolicitudes);
+        btnProveedores = findViewById(R.id.btnProveedores);
+        btnDespacho = findViewById(R.id.btnDespacho);
+        btnRegresar = findViewById(R.id.btnRegresar);
+
+        configurarEventos();
     }
 
     private void cargarDespachos() {
@@ -68,6 +78,28 @@ public class frmListarDespacho extends AppCompatActivity {
 
     public void btnSolicitudes(View view) {
 
+    }
+
+    private void configurarEventos() {
+        if (btnSolicitudes != null) btnSolicitudes.setOnClickListener(v -> abrirSolicitudes());
+        if (btnProveedores != null) btnProveedores.setOnClickListener(v -> abrirProveedores());
+        if (btnDespacho != null) btnDespacho.setOnClickListener(v -> abrirDespacho());
+        if (btnRegresar != null) btnRegresar.setOnClickListener(v -> finish());
+    }
+
+    private void abrirSolicitudes() {
+        Intent intent = new Intent(this, frmListarSolicitudes.class);
+        startActivity(intent);
+    }
+
+    private void abrirProveedores() {
+        Intent intent = new Intent(this, frmGestionProveedores.class);
+        startActivity(intent);
+    }
+
+    private void abrirDespacho() {
+        Intent intent = new Intent(this, frmListarDespacho.class);
+        startActivity(intent);
     }
 
     public void btnRegresar(View view) {

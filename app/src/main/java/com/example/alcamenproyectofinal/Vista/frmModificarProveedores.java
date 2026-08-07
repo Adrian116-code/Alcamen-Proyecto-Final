@@ -1,5 +1,6 @@
 package com.example.alcamenproyectofinal.Vista;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.VerifiedInputEvent;
 import android.view.View;
@@ -17,9 +18,11 @@ import com.example.alcamenproyectofinal.Datos.AppDatabase;
 import com.example.alcamenproyectofinal.Modelo.Producto;
 import com.example.alcamenproyectofinal.Modelo.Proveedor;
 import com.example.alcamenproyectofinal.R;
+import com.google.android.material.button.MaterialButton;
 
 public class frmModificarProveedores extends AppCompatActivity {
 
+    private MaterialButton btnSolicitudes, btnProveedores, btnDespacho, btnRegresar;
     private EditText codigo, razon_social, contacto, telefono;
     private AppDatabase db;
 
@@ -35,38 +38,38 @@ public class frmModificarProveedores extends AppCompatActivity {
             return insets;
         });
 
-        // 1. Inicializar Room Database
         db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "hipercorp_db").allowMainThreadQueries().build();
 
-        // 2. Mapear vistas del XML
         codigo = findViewById(R.id.txtCodigoProveedorMod);
         razon_social = findViewById(R.id.txtRazonSocialMod);
         contacto = findViewById(R.id.txtContactoMod);
         telefono = findViewById(R.id.txtNumeroMod);
 
-        // 3. Recibir la clave primaria mediante el Intent y autocompletar
         if (getIntent().hasExtra("CODIGO_PROVEEDOR")) {
             String codigoRecibido = getIntent().getStringExtra("CODIGO_PROVEEDOR");
             cargarDatosProveedor(codigoRecibido);
         }
+
+        btnSolicitudes = findViewById(R.id.btnSolicitudes);
+        btnProveedores = findViewById(R.id.btnProveedores);
+        btnDespacho = findViewById(R.id.btnDespacho);
+        btnRegresar = findViewById(R.id.btnRegresar);
+
+        configurarEventos();
     }
 
     private void cargarDatosProveedor(String codigoProveedor) {
         try {
-            // Buscamos el proveedor en Room mediante su DAO
             Proveedor proveedorEncontrado = db.proveedorDao().obtenerPorId(codigoProveedor);
 
             if (proveedorEncontrado != null) {
-                // Rellenar automáticamente los campos
                 codigo.setText(proveedorEncontrado.getCodigo_proveedor());
                 razon_social.setText(proveedorEncontrado.getRazon_social());
                 contacto.setText(proveedorEncontrado.getContacto());
 
-                // Convertir el entero del teléfono a String para mostrarlo en el EditText
                 telefono.setText(String.valueOf(proveedorEncontrado.getTelefono()));
 
-                // Bloquear la clave primaria para proteger la integridad en Room
                 codigo.setEnabled(false);
             }
         } catch (Exception e) {
@@ -82,7 +85,6 @@ public class frmModificarProveedores extends AppCompatActivity {
             proveedorEditado.setRazon_social(razon_social.getText().toString());
             proveedorEditado.setContacto(contacto.getText().toString());
 
-            // Validación rápida para evitar un NumberFormatException si el teléfono está vacío
             String telTexto = telefono.getText().toString().trim();
             if (!telTexto.isEmpty()) {
                 proveedorEditado.setTelefono(Integer.parseInt(telTexto));
@@ -98,6 +100,28 @@ public class frmModificarProveedores extends AppCompatActivity {
         } catch (Exception e) {
             Toast.makeText(this, "Error al actualizar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void configurarEventos() {
+        if (btnSolicitudes != null) btnSolicitudes.setOnClickListener(v -> abrirSolicitudes());
+        if (btnProveedores != null) btnProveedores.setOnClickListener(v -> abrirProveedores());
+        if (btnDespacho != null) btnDespacho.setOnClickListener(v -> abrirDespacho());
+        if (btnRegresar != null) btnRegresar.setOnClickListener(v -> finish());
+    }
+
+    private void abrirSolicitudes() {
+        Intent intent = new Intent(this, frmListarSolicitudes.class);
+        startActivity(intent);
+    }
+
+    private void abrirProveedores() {
+        Intent intent = new Intent(this, frmGestionProveedores.class);
+        startActivity(intent);
+    }
+
+    private void abrirDespacho() {
+        Intent intent = new Intent(this, frmListarDespacho.class);
+        startActivity(intent);
     }
 
     public void btnRegresar(View view) {

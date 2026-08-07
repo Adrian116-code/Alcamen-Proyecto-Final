@@ -79,10 +79,13 @@ public class frmListarSedes extends AppCompatActivity {
         rvSedes.setLayoutManager(new LinearLayoutManager(this));
 
         cargarYMostrarSedes();
+
+        configurarEventos();
     }
 
-    public void btnListarSede(View view) {
-        cargarYMostrarSedes();
+    public void btnInsertarSedes(View view) {
+        Intent x = new Intent(this, frmInsertarSedes.class);
+        startActivity(x);
     }
 
     private void cargarYMostrarSedes() {

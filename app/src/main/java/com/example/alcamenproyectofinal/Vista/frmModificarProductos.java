@@ -47,25 +47,23 @@ public class frmModificarProductos extends AppCompatActivity {
         btnSedes = findViewById(R.id.btnSedes);
         btnRegresar = findViewById(R.id.btnRegresar);
 
-        // 1. Inicializar Room
         db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "hipercorp_db").allowMainThreadQueries().build();
 
-        // 2. Vincular vistas del XML
         codigo = findViewById(R.id.txtCodigoProductoMod);
         nombre = findViewById(R.id.txtNombreProductoMod);
         descripcion = findViewById(R.id.txtDescripcionProductoMod);
         ubicacion = findViewById(R.id.txtUbicacionProductoMod);
         codigo_proveedor = findViewById(R.id.txtCodigoProveedorProductoMod);
 
-        // 3. Cargar opciones del desplegable de proveedores
         cargarProveedoresEnDropdown();
 
-        // 4. Recibir el Intent con la clave primaria y autocompletar
         if (getIntent().hasExtra("CODIGO_PRODUCTO")) {
             String codigoRecibido = getIntent().getStringExtra("CODIGO_PRODUCTO");
             cargarDatosProducto(codigoRecibido);
         }
+
+        configurarEventos();
     }
 
     private void cargarProveedoresEnDropdown() {

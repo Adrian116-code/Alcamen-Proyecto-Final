@@ -1,5 +1,6 @@
 package com.example.alcamenproyectofinal.Vista;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -17,11 +18,14 @@ import androidx.room.Room;
 import com.example.alcamenproyectofinal.Datos.AppDatabase;
 import com.example.alcamenproyectofinal.Modelo.Producto;
 import com.example.alcamenproyectofinal.R;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class frmIngresoProductos extends AppCompatActivity {
+
+    private MaterialButton btnIngresoSalida, btnSolicitudes, btnRegresar;
 
     AutoCompleteTextView producto_ingreso;
     EditText cantidad_ingreso;
@@ -37,7 +41,7 @@ public class frmIngresoProductos extends AppCompatActivity {
                 AppDatabase.class, "hipercorp_db").allowMainThreadQueries().build();
 
         producto_ingreso = findViewById(R.id.txtProductoIngreso);
-        cantidad_ingreso = findViewById(R.id.txtCantidadIngreso); // Tu campo para la cantidad numérica
+        cantidad_ingreso = findViewById(R.id.txtCantidadIngreso);
 
         cargarProductosEnDropdown();
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -45,6 +49,12 @@ public class frmIngresoProductos extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        btnIngresoSalida = findViewById(R.id.btnIngresoSalida);
+        btnSolicitudes = findViewById(R.id.btnSolicitudes);
+        btnRegresar = findViewById(R.id.btnRegresar);
+
+        configurarEventos();
     }
 
     private void cargarProductosEnDropdown() {
@@ -98,6 +108,22 @@ public class frmIngresoProductos extends AppCompatActivity {
             finish();
         } catch (Exception e) {
             Toast.makeText(this, "Error al actualizar: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void configurarEventos() {
+        if (btnIngresoSalida != null) {
+            btnIngresoSalida.setOnClickListener(v ->
+                    startActivity(new Intent(this, frmCantidadProductos.class)));
+        }
+
+        if (btnSolicitudes != null) {
+            btnSolicitudes.setOnClickListener(v ->
+                    startActivity(new Intent(this, frmInsertarSolicitudes.class)));
+        }
+
+        if (btnRegresar != null) {
+            btnRegresar.setOnClickListener(v -> finish());
         }
     }
 

@@ -44,6 +44,8 @@ public class frmInsertarSedes extends AppCompatActivity {
         codigo = findViewById(R.id.txtCodigoSede);
         nombre = findViewById(R.id.txtNombreSede);
         direccion = findViewById(R.id.txtDireccionSede);
+
+        configurarEventos();
     }
 
     public void btnInsertarSede(View view){

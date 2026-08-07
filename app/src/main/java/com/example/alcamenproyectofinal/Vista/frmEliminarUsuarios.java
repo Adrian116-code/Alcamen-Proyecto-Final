@@ -41,6 +41,8 @@ public class frmEliminarUsuarios extends AppCompatActivity {
         btnRegresar = findViewById(R.id.btnRegresar);
 
         codigo = findViewById(R.id.txtEliminarUsuario);
+
+        configurarEventos();
     }
 
     public void btnEliminarUsuario(View view){

@@ -45,21 +45,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <!-- Botón opcional para refrescar -->
         <Button
             android:id="@+id/button81"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:onClick="btnListarProducto"
-            android:text="Refrescar Lista" />
-
-        <Button
-            android:id="@+id/button34"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="btnRegresar"
-            android:text="Regresar" />
+            android:onClick="btnInsertarProductos"
+            android:text="Insertar Productos" />
     </LinearLayout>
 
     <LinearLayout

@@ -22,7 +22,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- ÁREA DESPLAZABLE (SCROLLVIEW) -->
     <ScrollView
         android:id="@+id/scrollView"
         android:layout_width="0dp"
@@ -41,7 +40,6 @@
             android:paddingHorizontal="32dp"
             android:paddingBottom="24dp">
 
-            <!-- Código -->
             <TextView
                 android:id="@+id/textView20"
                 android:layout_width="match_parent"
@@ -83,7 +81,6 @@
                 android:padding="12dp"
                 android:textColor="#000000" />
 
-            <!-- Descripción -->
             <TextView
                 android:id="@+id/textView22"
                 android:layout_width="match_parent"
@@ -104,7 +101,6 @@
                 android:padding="12dp"
                 android:textColor="#000000" />
 
-            <!-- Ubicación -->
             <TextView
                 android:id="@+id/textView33"
                 android:layout_width="match_parent"
@@ -125,27 +121,25 @@
                 android:padding="12dp"
                 android:textColor="#000000" />
 
-            <!-- Dropdown Proveedor -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtCodigoProveedorProducto"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
+                android:layout_marginBottom="20dp"
                 android:hint="Selecciona un Proveedor"
-                app:boxBackgroundColor="@android:color/white"
-                app:boxCornerRadiusBottomEnd="8dp"
-                app:boxCornerRadiusBottomStart="8dp"
-                app:boxCornerRadiusTopEnd="8dp"
-                app:boxCornerRadiusTopStart="8dp">
+                app:hintTextColor="#FFFFFF"
+                android:textColorHint="#B0B0B0"
+                app:boxStrokeColor="#FFFFFF"
+                app:endIconTint="#FFFFFF">
 
                 <AutoCompleteTextView
                     android:id="@+id/autoCompleteProveedor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="none"
-                    android:padding="12dp"
-                    android:textColor="#000000" />
+                    android:editable="false"
+                    android:textColor="#FFFFFF" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Botones de Acción -->

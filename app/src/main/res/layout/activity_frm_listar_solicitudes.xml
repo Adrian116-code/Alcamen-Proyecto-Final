@@ -47,21 +47,6 @@
         app:layout_constraintBottom_toTopOf="@+id/footerJefeAlmacen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-
-        <Button
-            android:id="@+id/ListarSolicitud"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:onClick="btnListarSolicitud"
-            android:text="Refrescar Lista" />
-
-        <Button
-            android:id="@+id/button49"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="btnRegresar"
-            android:text="Regresar" />
     </LinearLayout>
 
     <!-- Footer de navegación del Jefe de Almacén (Intacto) -->

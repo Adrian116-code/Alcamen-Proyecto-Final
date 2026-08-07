@@ -1,5 +1,6 @@
 package com.example.alcamenproyectofinal.Vista;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -18,12 +19,14 @@ import com.example.alcamenproyectofinal.Datos.AppDatabase;
 import com.example.alcamenproyectofinal.Modelo.Producto;
 import com.example.alcamenproyectofinal.Modelo.Despacho_Sede;
 import com.example.alcamenproyectofinal.R;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class frmSalidaProductos extends AppCompatActivity {
 
+    private MaterialButton btnIngresoSalida, btnSolicitudes, btnRegresar;
     AutoCompleteTextView producto_salida, sede_destino;
     EditText cantidad_salida;
     AppDatabase db;
@@ -51,6 +54,12 @@ public class frmSalidaProductos extends AppCompatActivity {
 
         cargarProductosEnDropdown();
         cargarSedesEnDropdown();
+
+        btnIngresoSalida = findViewById(R.id.btnIngresoSalida);
+        btnSolicitudes = findViewById(R.id.btnSolicitudes);
+        btnRegresar = findViewById(R.id.btnRegresar);
+
+        configurarEventos();
     }
 
     private void cargarProductosEnDropdown() {
@@ -100,7 +109,6 @@ public class frmSalidaProductos extends AppCompatActivity {
         String seleccionSede = sede_destino.getText().toString();
         String cantidadStr = cantidad_salida.getText().toString().trim();
 
-        // Validaciones básicas de selección
         if (seleccionProducto.isEmpty() || seleccionProducto.equals("No hay productos disponibles") ||
                 seleccionSede.isEmpty() || seleccionSede.equals("No hay sedes disponibles") ||
                 cantidadStr.isEmpty()) {
@@ -109,7 +117,6 @@ public class frmSalidaProductos extends AppCompatActivity {
             return;
         }
 
-        // Validación y parseo seguro de la cantidad
         int cantidadAReducir;
         try {
             cantidadAReducir = Integer.parseInt(cantidadStr);
@@ -165,16 +172,20 @@ public class frmSalidaProductos extends AppCompatActivity {
         }
     }
 
-    // ==================== MÉTODOS DE NAVEGACIÓN (FOOTER / REGRESAR) ====================
+    private void configurarEventos() {
+        if (btnIngresoSalida != null) {
+            btnIngresoSalida.setOnClickListener(v ->
+                    startActivity(new Intent(this, frmCantidadProductos.class)));
+        }
 
-    public void btnIngresoSalida(View view) {
-        // Pantalla actual (Movimientos)
-    }
+        if (btnSolicitudes != null) {
+            btnSolicitudes.setOnClickListener(v ->
+                    startActivity(new Intent(this, frmInsertarSolicitudes.class)));
+        }
 
-    public void btnSolicitudes(View view) {
-        // Intent a tu pantalla de Solicitudes
-        // Intent intent = new Intent(this, frmSolicitudes.class);
-        // startActivity(intent);
+        if (btnRegresar != null) {
+            btnRegresar.setOnClickListener(v -> finish());
+        }
     }
 
     public void btnRegresar(View view) {

@@ -56,18 +56,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:onClick="btnListarSede"
-            android:text="Refrescar Lista" />
-
-        <Button
-            android:id="@+id/button55"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="btnRegresar"
-            android:text="Regresar" />
+            android:onClick="btnInsertarSedes"
+            android:text="Insertar Sedes" />
     </LinearLayout>
 
-    <!-- Footer de navegación inferior (Intacto) -->
     <LinearLayout
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"

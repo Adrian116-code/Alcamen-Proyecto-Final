@@ -68,6 +68,8 @@ public class frmInsertarUsuarios extends AppCompatActivity {
         edad = findViewById(R.id.txtEdad);
         username = findViewById(R.id.txtUsername);
         password = findViewById(R.id.txtPassword);
+
+        configurarEventos();
     }
 
     public void btnInsertarUsuario(View view){

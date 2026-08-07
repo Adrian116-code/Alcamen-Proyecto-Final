@@ -1,5 +1,6 @@
 package com.example.alcamenproyectofinal.Vista;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -16,8 +17,11 @@ import com.example.alcamenproyectofinal.Datos.AppDatabase;
 import com.example.alcamenproyectofinal.Modelo.Producto;
 import com.example.alcamenproyectofinal.Modelo.Proveedor;
 import com.example.alcamenproyectofinal.R;
+import com.google.android.material.button.MaterialButton;
 
 public class frmEliminarProveedores extends AppCompatActivity {
+
+    private MaterialButton btnSolicitudes, btnProveedores, btnDespacho, btnRegresar;
 
     EditText codigo;
 
@@ -33,6 +37,13 @@ public class frmEliminarProveedores extends AppCompatActivity {
         });
 
         codigo = findViewById(R.id.txtEliminarProveedor);
+
+        btnSolicitudes = findViewById(R.id.btnSolicitudes);
+        btnProveedores = findViewById(R.id.btnProveedores);
+        btnDespacho = findViewById(R.id.btnDespacho);
+        btnRegresar = findViewById(R.id.btnRegresar);
+
+        configurarEventos();
     }
 
     public void btnEliminarProveedor(View view){
@@ -53,6 +64,28 @@ public class frmEliminarProveedores extends AppCompatActivity {
             Toast.makeText(this, "El código no existe en la base de datos", Toast.LENGTH_LONG).show();
         }
 
+    }
+
+    private void configurarEventos() {
+        if (btnSolicitudes != null) btnSolicitudes.setOnClickListener(v -> abrirSolicitudes());
+        if (btnProveedores != null) btnProveedores.setOnClickListener(v -> abrirProveedores());
+        if (btnDespacho != null) btnDespacho.setOnClickListener(v -> abrirDespacho());
+        if (btnRegresar != null) btnRegresar.setOnClickListener(v -> finish());
+    }
+
+    private void abrirSolicitudes() {
+        Intent intent = new Intent(this, frmListarSolicitudes.class);
+        startActivity(intent);
+    }
+
+    private void abrirProveedores() {
+        Intent intent = new Intent(this, frmGestionProveedores.class);
+        startActivity(intent);
+    }
+
+    private void abrirDespacho() {
+        Intent intent = new Intent(this, frmListarDespacho.class);
+        startActivity(intent);
     }
 
     public void btnRegresar(View view){

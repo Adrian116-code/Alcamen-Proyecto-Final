@@ -43,20 +43,19 @@ public class frmModificarSedes extends AppCompatActivity {
         btnSedes = findViewById(R.id.btnSedes);
         btnRegresar = findViewById(R.id.btnRegresar);
 
-        // 1. Vincular los EditText con sus IDs
         codigo = findViewById(R.id.txtCodigoSedeMod);
         nombre = findViewById(R.id.txtNombreSedeMod);
         direccion = findViewById(R.id.txtDireccionSedeMod);
 
-        // 2. Inicializar la base de datos Room
         db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "hipercorp_db").allowMainThreadQueries().build();
 
-        // 3. Recibir el Intent con el código de la sede y cargar los datos
         if (getIntent().hasExtra("CODIGO_SEDE")) {
             String codigoRecibido = getIntent().getStringExtra("CODIGO_SEDE");
             cargarDatosSede(codigoRecibido);
         }
+
+        configurarEventos();
     }
 
     private void cargarDatosSede(String codigoSede) {

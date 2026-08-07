@@ -58,6 +58,8 @@ public class frmInsertarProductos extends AppCompatActivity {
 
         cargarProveedoresEnDropdown();
 
+        configurarEventos();
+
     }
 
     private void cargarProveedoresEnDropdown() {

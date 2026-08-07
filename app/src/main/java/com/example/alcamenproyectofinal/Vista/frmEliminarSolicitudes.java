@@ -1,5 +1,6 @@
 package com.example.alcamenproyectofinal.Vista;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -15,8 +16,11 @@ import androidx.room.Room;
 import com.example.alcamenproyectofinal.Datos.AppDatabase;
 import com.example.alcamenproyectofinal.Modelo.Solicitud;
 import com.example.alcamenproyectofinal.R;
+import com.google.android.material.button.MaterialButton;
 
 public class frmEliminarSolicitudes extends AppCompatActivity {
+
+    private MaterialButton btnIngresoSalida, btnSolicitudes, btnRegresar;
 
     EditText codigo;
 
@@ -32,6 +36,12 @@ public class frmEliminarSolicitudes extends AppCompatActivity {
         });
 
         codigo = findViewById(R.id.txtCodigoSolicitudEliminar);
+
+        btnIngresoSalida = findViewById(R.id.btnIngresoSalida);
+        btnSolicitudes = findViewById(R.id.btnSolicitudes);
+        btnRegresar = findViewById(R.id.btnRegresar);
+
+        configurarEventos();
     }
 
     public void btnEliminarSolicitud(View view){
@@ -52,6 +62,22 @@ public class frmEliminarSolicitudes extends AppCompatActivity {
             Toast.makeText(this, "El código no existe en la base de datos", Toast.LENGTH_LONG).show();
         }
 
+    }
+
+    private void configurarEventos() {
+        if (btnIngresoSalida != null) {
+            btnIngresoSalida.setOnClickListener(v ->
+                    startActivity(new Intent(this, frmCantidadProductos.class)));
+        }
+
+        if (btnSolicitudes != null) {
+            btnSolicitudes.setOnClickListener(v ->
+                    startActivity(new Intent(this, frmInsertarSolicitudes.class)));
+        }
+
+        if (btnRegresar != null) {
+            btnRegresar.setOnClickListener(v -> finish());
+        }
     }
 
     public void btnRegresar(View view){

@@ -1,5 +1,6 @@
 package com.example.alcamenproyectofinal.Vista;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,12 +23,14 @@ import com.example.alcamenproyectofinal.Adaptador.SolicitudAdapter;
 import com.example.alcamenproyectofinal.Datos.AppDatabase;
 import com.example.alcamenproyectofinal.Modelo.Solicitud;
 import com.example.alcamenproyectofinal.R;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class frmListarSolicitudes extends AppCompatActivity {
 
+    private MaterialButton btnSolicitudes, btnProveedores, btnDespacho, btnRegresar;
     private RecyclerView rvSolicitudes;
     private AppDatabase db;
     private List<Solicitud> listaSolicitudesGlobal = new ArrayList<>();
@@ -52,6 +55,13 @@ public class frmListarSolicitudes extends AppCompatActivity {
         rvSolicitudes.setLayoutManager(new LinearLayoutManager(this));
 
         cargarYMostrarSolicitudes();
+
+        btnSolicitudes = findViewById(R.id.btnSolicitudes);
+        btnProveedores = findViewById(R.id.btnProveedores);
+        btnDespacho = findViewById(R.id.btnDespacho);
+        btnRegresar = findViewById(R.id.btnRegresar);
+
+        configurarEventos();
     }
 
     public void btnListarSolicitud(View view) {
@@ -90,7 +100,6 @@ public class frmListarSolicitudes extends AppCompatActivity {
         }
     }
 
-    // Acción rápida para el Lápiz
     private void aprobarSolicitudDirecto(Solicitud solicitud) {
         try {
             db.solicitudDao().aprobarSolicitud(solicitud.getCodigo_solicitud());
@@ -101,7 +110,6 @@ public class frmListarSolicitudes extends AppCompatActivity {
         }
     }
 
-    // Confirmación al presionar la X
     private void confirmarEliminacion(Solicitud solicitud, int position) {
         new AlertDialog.Builder(this)
                 .setTitle("Eliminar Solicitud")
@@ -145,6 +153,28 @@ public class frmListarSolicitudes extends AppCompatActivity {
 
         menuOpciones.setNeutralButton("Cancelar", null);
         menuOpciones.show();
+    }
+
+    private void configurarEventos() {
+        if (btnSolicitudes != null) btnSolicitudes.setOnClickListener(v -> abrirSolicitudes());
+        if (btnProveedores != null) btnProveedores.setOnClickListener(v -> abrirProveedores());
+        if (btnDespacho != null) btnDespacho.setOnClickListener(v -> abrirDespacho());
+        if (btnRegresar != null) btnRegresar.setOnClickListener(v -> finish());
+    }
+
+    private void abrirSolicitudes() {
+        Intent intent = new Intent(this, frmListarSolicitudes.class);
+        startActivity(intent);
+    }
+
+    private void abrirProveedores() {
+        Intent intent = new Intent(this, frmGestionProveedores.class);
+        startActivity(intent);
+    }
+
+    private void abrirDespacho() {
+        Intent intent = new Intent(this, frmListarDespacho.class);
+        startActivity(intent);
     }
 
     public void btnRegresar(View view) {

@@ -41,6 +41,8 @@ public class frmEliminarProductos extends AppCompatActivity {
         btnRegresar = findViewById(R.id.btnRegresar);
 
         codigo = findViewById(R.id.txtCodigoProductoEliminar);
+
+        configurarEventos();
     }
 
     public void btnEliminarProducto(View view){
