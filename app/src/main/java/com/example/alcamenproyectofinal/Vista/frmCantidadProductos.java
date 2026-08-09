@@ -15,7 +15,7 @@ import com.google.android.material.button.MaterialButton;
 
 public class frmCantidadProductos extends AppCompatActivity {
 
-    private MaterialButton btnIngresoSalida, btnSolicitudes, btnRegresar;
+    private MaterialButton btnSolicitudes, btnRegresar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,6 @@ public class frmCantidadProductos extends AppCompatActivity {
             return insets;
         });
 
-        btnIngresoSalida = findViewById(R.id.btnIngresoSalida);
         btnSolicitudes = findViewById(R.id.btnSolicitudes);
         btnRegresar = findViewById(R.id.btnRegresar);
 
@@ -46,10 +45,6 @@ public class frmCantidadProductos extends AppCompatActivity {
     }
 
     private void configurarEventos() {
-        if (btnIngresoSalida != null) {
-            btnIngresoSalida.setOnClickListener(v ->
-                    startActivity(new Intent(this, frmCantidadProductos.class)));
-        }
 
         if (btnSolicitudes != null) {
             btnSolicitudes.setOnClickListener(v ->

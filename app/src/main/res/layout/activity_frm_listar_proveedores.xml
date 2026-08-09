@@ -8,7 +8,6 @@
     android:background="#29224E"
     tools:context=".Vista.frmListarProveedores">
 
-    <!-- Título de la vista -->
     <TextView
         android:id="@+id/tvTituloListarProveedores"
         android:layout_width="wrap_content"
@@ -22,7 +21,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- RecyclerView para renderizar la lista de tarjetas -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvProveedores"
         android:layout_width="0dp"
@@ -37,7 +35,6 @@
         app:layout_constraintTop_toBottomOf="@+id/tvTituloListarProveedores"
         tools:listitem="@layout/item_proveedor" />
 
-    <!-- Contenedor para botones de acción -->
     <LinearLayout
         android:id="@+id/containerBotones"
         android:layout_width="340dp"
@@ -56,15 +53,8 @@
             android:onClick="btnInsertarProveedores"
             android:text="Insertar Proveedores" />
 
-        <Button
-            android:id="@+id/button55"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="btnRegresar"
-            android:text="Regresar" />
     </LinearLayout>
 
-    <!-- Footer del Jefe de Almacén -->
     <LinearLayout
         android:id="@+id/footerJefeAlmacen"
         android:layout_width="match_parent"
@@ -78,7 +68,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <!-- SOLICITUDES -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSolicitudes"
             style="@style/Widget.MaterialComponents.Button.TextButton"
@@ -97,7 +86,6 @@
             app:iconTint="@android:color/white"
             app:textAllCaps="false" />
 
-        <!-- PROVEEDORES (ACTIVO EN ESTA PANTALLA) -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnProveedores"
             style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
@@ -119,7 +107,6 @@
             app:iconTint="@android:color/white"
             app:textAllCaps="false" />
 
-        <!-- DESPACHO -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnDespacho"
             style="@style/Widget.MaterialComponents.Button.TextButton"
@@ -138,7 +125,6 @@
             app:iconTint="@android:color/white"
             app:textAllCaps="false" />
 
-        <!-- REGRESAR -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnRegresar"
             style="@style/Widget.MaterialComponents.Button.TextButton"

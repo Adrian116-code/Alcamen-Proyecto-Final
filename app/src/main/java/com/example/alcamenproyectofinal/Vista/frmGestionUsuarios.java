@@ -15,7 +15,7 @@ import com.google.android.material.button.MaterialButton;
 
 public class frmGestionUsuarios extends AppCompatActivity {
 
-    private MaterialButton btnUsuarios, btnProductos, btnSedes, btnRegresar;
+    private MaterialButton btnProductos, btnSedes, btnRegresar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,6 @@ public class frmGestionUsuarios extends AppCompatActivity {
             return insets;
         });
 
-        btnUsuarios = findViewById(R.id.btnUsuarios);
         btnProductos = findViewById(R.id.btnProductos);
         btnSedes = findViewById(R.id.btnSedes);
         btnRegresar = findViewById(R.id.btnRegresar);
@@ -57,14 +56,9 @@ public class frmGestionUsuarios extends AppCompatActivity {
     }
 
     private void configurarEventos() {
-        if (btnUsuarios != null) btnUsuarios.setOnClickListener(v -> abrirUsuarios());
         if (btnProductos != null) btnProductos.setOnClickListener(v -> abrirProductos());
         if (btnSedes != null) btnSedes.setOnClickListener(v -> abrirSedes());
         if (btnRegresar != null) btnRegresar.setOnClickListener(v -> finish());
-    }
-
-    private void abrirUsuarios() {
-        startActivity(new Intent(this, frmGestionUsuarios.class));
     }
 
     private void abrirProductos() {

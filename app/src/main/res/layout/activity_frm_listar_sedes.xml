@@ -8,7 +8,6 @@
     android:background="#29224E"
     tools:context=".Vista.frmListarSedes">
 
-    <!-- Título de la vista -->
     <TextView
         android:id="@+id/tvTituloListarSedes"
         android:layout_width="wrap_content"
@@ -22,9 +21,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- RecyclerView para renderizar las tarjetas de Sedes -->
-
-    <!-- Contenedor para botones de acción -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSedes"
         android:layout_width="0dp"

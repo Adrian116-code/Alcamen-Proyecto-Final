@@ -51,7 +51,6 @@ public class frmAdmin extends AppCompatActivity {
         tvContadorProductos = findViewById(R.id.tvContadorProductos);
         tvContadorSedes = findViewById(R.id.tvContadorSedes);
 
-        // Instancia de Room DB
         db = AppDatabase.getDatabase(this);
 
         configurarEventos();

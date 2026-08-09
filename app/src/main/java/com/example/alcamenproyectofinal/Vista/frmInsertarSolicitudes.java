@@ -25,7 +25,7 @@ import java.util.List;
 
 public class frmInsertarSolicitudes extends AppCompatActivity {
 
-    private MaterialButton btnIngresoSalida, btnSolicitudes, btnRegresar;
+    private MaterialButton btnIngresoSalida, btnRegresar;
 
     EditText codigo, fecha;
 
@@ -55,7 +55,6 @@ public class frmInsertarSolicitudes extends AppCompatActivity {
         cargarDropdownOperarios();
 
         btnIngresoSalida = findViewById(R.id.btnIngresoSalida);
-        btnSolicitudes = findViewById(R.id.btnSolicitudes);
         btnRegresar = findViewById(R.id.btnRegresar);
 
         configurarEventos();
@@ -113,14 +112,10 @@ public class frmInsertarSolicitudes extends AppCompatActivity {
     }
 
     private void configurarEventos() {
+
         if (btnIngresoSalida != null) {
             btnIngresoSalida.setOnClickListener(v ->
                     startActivity(new Intent(this, frmCantidadProductos.class)));
-        }
-
-        if (btnSolicitudes != null) {
-            btnSolicitudes.setOnClickListener(v ->
-                    startActivity(new Intent(this, frmInsertarSolicitudes.class)));
         }
 
         if (btnRegresar != null) {

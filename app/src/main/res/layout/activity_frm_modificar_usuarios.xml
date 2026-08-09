@@ -8,7 +8,6 @@
     android:background="#29224E"
     tools:context=".Vista.frmModificarUsuarios">
 
-    <!-- Título Fijo Arriba -->
     <TextView
         android:id="@+id/tvTituloModificarUsuarios"
         android:layout_width="wrap_content"
@@ -22,7 +21,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Formulario Desplazable -->
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -209,17 +207,9 @@
                 android:onClick="btnModificarUsuario"
                 android:text="Modificar Usuario" />
 
-            <Button
-                android:id="@+id/button30"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="btnRegresar"
-                android:text="Regresar" />
-
         </LinearLayout>
     </ScrollView>
 
-    <!-- Footer Fijo Abajo -->
     <LinearLayout
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"

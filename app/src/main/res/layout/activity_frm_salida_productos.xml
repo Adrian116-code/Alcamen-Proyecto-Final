@@ -22,7 +22,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- CONTENEDOR DEL FORMULARIO -->
     <LinearLayout
         android:layout_width="330dp"
         android:layout_height="wrap_content"
@@ -102,15 +101,8 @@
             android:onClick="btnReducirStock"
             android:text="Reducir Stock" />
 
-        <Button
-            android:id="@+id/button44"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="btnRegresar"
-            android:text="Regresar" />
     </LinearLayout>
 
-    <!-- FOOTER FIJO ABAJO -->
     <LinearLayout
         android:id="@+id/footerSalidaProductos"
         android:layout_width="match_parent"
@@ -123,7 +115,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <!-- MOVIMIENTOS (ACTIVO EN ESTA PANTALLA) -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnIngresoSalida"
             style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
@@ -131,7 +122,6 @@
             android:layout_height="65dp"
             android:layout_marginVertical="6dp"
             android:layout_weight="1"
-            android:onClick="btnIngresoSalida"
             android:paddingLeft="0dp"
             android:paddingRight="0dp"
             android:text="Movimientos"
@@ -146,7 +136,6 @@
             app:iconTint="@android:color/white"
             app:textAllCaps="false" />
 
-        <!-- SOLICITUDES -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSolicitudes"
             style="@style/Widget.MaterialComponents.Button.TextButton"
@@ -166,7 +155,6 @@
             app:iconTint="@android:color/white"
             app:textAllCaps="false" />
 
-        <!-- REGRESAR -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnRegresarFooter"
             style="@style/Widget.MaterialComponents.Button.TextButton"

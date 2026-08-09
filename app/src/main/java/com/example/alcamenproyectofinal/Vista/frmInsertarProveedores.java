@@ -20,7 +20,7 @@ import com.google.android.material.button.MaterialButton;
 
 public class frmInsertarProveedores extends AppCompatActivity {
 
-    private MaterialButton btnSolicitudes, btnProveedores, btnDespacho, btnRegresar;
+    private MaterialButton btnSolicitudes, btnDespacho, btnRegresar;
     EditText codigo, razon_social, contacto, telefono;
 
     @Override
@@ -40,7 +40,6 @@ public class frmInsertarProveedores extends AppCompatActivity {
         telefono = findViewById(R.id.txtNumero);
 
         btnSolicitudes = findViewById(R.id.btnSolicitudes);
-        btnProveedores = findViewById(R.id.btnProveedores);
         btnDespacho = findViewById(R.id.btnDespacho);
         btnRegresar = findViewById(R.id.btnRegresar);
 
@@ -63,18 +62,12 @@ public class frmInsertarProveedores extends AppCompatActivity {
 
     private void configurarEventos() {
         if (btnSolicitudes != null) btnSolicitudes.setOnClickListener(v -> abrirSolicitudes());
-        if (btnProveedores != null) btnProveedores.setOnClickListener(v -> abrirProveedores());
         if (btnDespacho != null) btnDespacho.setOnClickListener(v -> abrirDespacho());
         if (btnRegresar != null) btnRegresar.setOnClickListener(v -> finish());
     }
 
     private void abrirSolicitudes() {
         Intent intent = new Intent(this, frmListarSolicitudes.class);
-        startActivity(intent);
-    }
-
-    private void abrirProveedores() {
-        Intent intent = new Intent(this, frmGestionProveedores.class);
         startActivity(intent);
     }
 

@@ -70,13 +70,6 @@
             android:text="Aumentar Stock"
             android:layout_marginBottom="8dp" />
 
-        <Button
-            android:id="@+id/button42"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="btnRegresar"
-            android:text="Regresar" />
-
     </LinearLayout>
 
     <LinearLayout
@@ -92,7 +85,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <!-- MOVIMIENTOS (ACTIVO EN ESTA PANTALLA) -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnIngresoSalida"
             style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
@@ -114,7 +106,6 @@
             app:iconTint="@android:color/white"
             app:textAllCaps="false" />
 
-        <!-- SOLICITUDES -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSolicitudes"
             style="@style/Widget.MaterialComponents.Button.TextButton"
@@ -133,7 +124,6 @@
             app:iconTint="@android:color/white"
             app:textAllCaps="false" />
 
-        <!-- REGRESAR -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnRegresar"
             style="@style/Widget.MaterialComponents.Button.TextButton"

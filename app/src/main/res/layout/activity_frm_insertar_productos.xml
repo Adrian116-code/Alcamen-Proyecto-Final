@@ -60,7 +60,6 @@
                 android:padding="12dp"
                 android:textColor="#000000" />
 
-            <!-- Nombre -->
             <TextView
                 android:id="@+id/textView21"
                 android:layout_width="match_parent"
@@ -142,7 +141,6 @@
                     android:textColor="#FFFFFF" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Botones de Acción -->
             <Button
                 android:id="@+id/button37"
                 android:layout_width="match_parent"
@@ -153,19 +151,9 @@
                 android:text="Insertar Producto"
                 android:textColor="@android:color/white" />
 
-            <Button
-                android:id="@+id/button38"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="#7E57C2"
-                android:onClick="btnRegresar"
-                android:text="Regresar"
-                android:textColor="@android:color/white" />
-
         </LinearLayout>
     </ScrollView>
 
-    <!-- FOOTER FIJO DE NAVEGACIÓN (CON 5 OPCIONES) -->
     <LinearLayout
         android:id="@+id/footerGestionProductos"
         android:layout_width="match_parent"

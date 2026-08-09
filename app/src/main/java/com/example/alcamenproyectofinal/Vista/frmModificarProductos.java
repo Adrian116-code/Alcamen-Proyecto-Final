@@ -25,7 +25,7 @@ import java.util.List;
 
 public class frmModificarProductos extends AppCompatActivity {
 
-    private MaterialButton btnUsuarios, btnProductos, btnSedes, btnRegresar;
+    private MaterialButton btnUsuarios, btnSedes, btnRegresar;
     private EditText codigo, nombre, descripcion, ubicacion;
     private AutoCompleteTextView codigo_proveedor;
     private AppDatabase db;
@@ -43,7 +43,6 @@ public class frmModificarProductos extends AppCompatActivity {
         });
 
         btnUsuarios = findViewById(R.id.btnUsuarios);
-        btnProductos = findViewById(R.id.btnProductos);
         btnSedes = findViewById(R.id.btnSedes);
         btnRegresar = findViewById(R.id.btnRegresar);
 
@@ -90,20 +89,17 @@ public class frmModificarProductos extends AppCompatActivity {
 
     private void cargarDatosProducto(String codigoProducto) {
         try {
-            // Buscamos el producto en Room mediante su DAO
             Producto productoEncontrado = db.productoDao().obtenerPorId(codigoProducto);
 
             if (productoEncontrado != null) {
-                // Rellenar automáticamente las vistas
+
                 codigo.setText(productoEncontrado.getCodigo_producto());
                 nombre.setText(productoEncontrado.getNombre());
                 descripcion.setText(productoEncontrado.getDescripcion());
                 ubicacion.setText(productoEncontrado.getUbicacion());
 
-                // Rellenar el AutoCompleteTextView sin desplegar automáticamente la lista
                 codigo_proveedor.setText(productoEncontrado.getCodigo_proveedor(), false);
 
-                // Bloquear la clave primaria
                 codigo.setEnabled(false);
             }
         } catch (Exception e) {
@@ -115,20 +111,16 @@ public class frmModificarProductos extends AppCompatActivity {
         try {
             Producto productoEditado = new Producto();
 
-            // Mantenemos la clave primaria y tomamos los valores modificados
             productoEditado.setCodigo_producto(codigo.getText().toString());
             productoEditado.setNombre(nombre.getText().toString());
             productoEditado.setDescripcion(descripcion.getText().toString());
             productoEditado.setUbicacion(ubicacion.getText().toString());
             productoEditado.setCodigo_proveedor(codigo_proveedor.getText().toString());
 
-            // Si tienes el campo 'stock' en la entidad, es buena práctica volverlo a pasar si no lo editas aquí
-            // productoEditado.setStock(stockActual);
-
             db.productoDao().actualizarProducto(productoEditado);
 
             Toast.makeText(this, "Producto actualizado correctamente", Toast.LENGTH_LONG).show();
-            finish(); // Cerramos la pantalla para regresar al listado
+            finish();
 
         } catch (Exception e) {
             Toast.makeText(this, "Error al actualizar: " + e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -137,17 +129,12 @@ public class frmModificarProductos extends AppCompatActivity {
 
     private void configurarEventos() {
         if (btnUsuarios != null) btnUsuarios.setOnClickListener(v -> abrirUsuarios());
-        if (btnProductos != null) btnProductos.setOnClickListener(v -> abrirProductos());
         if (btnSedes != null) btnSedes.setOnClickListener(v -> abrirSedes());
         if (btnRegresar != null) btnRegresar.setOnClickListener(v -> finish());
     }
 
     private void abrirUsuarios() {
         startActivity(new Intent(this, frmGestionUsuarios.class));
-    }
-
-    private void abrirProductos() {
-        startActivity(new Intent(this, frmGestionProductos.class));
     }
 
     private void abrirSedes() {

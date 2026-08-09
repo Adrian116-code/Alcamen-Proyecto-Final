@@ -26,7 +26,7 @@ import java.util.List;
 
 public class frmSalidaProductos extends AppCompatActivity {
 
-    private MaterialButton btnIngresoSalida, btnSolicitudes, btnRegresar;
+    private MaterialButton btnSolicitudes, btnRegresar;
     AutoCompleteTextView producto_salida, sede_destino;
     EditText cantidad_salida;
     AppDatabase db;
@@ -55,7 +55,6 @@ public class frmSalidaProductos extends AppCompatActivity {
         cargarProductosEnDropdown();
         cargarSedesEnDropdown();
 
-        btnIngresoSalida = findViewById(R.id.btnIngresoSalida);
         btnSolicitudes = findViewById(R.id.btnSolicitudes);
         btnRegresar = findViewById(R.id.btnRegresar);
 
@@ -152,7 +151,6 @@ public class frmSalidaProductos extends AppCompatActivity {
         final int finalCantidadAReducir = cantidadAReducir;
 
         try {
-            // Transacción para asegurar consistencia en la BD
             db.runInTransaction(() -> {
                 db.productoDao().reducirStock(finalCodigoProducto, finalCantidadAReducir);
 
@@ -173,10 +171,6 @@ public class frmSalidaProductos extends AppCompatActivity {
     }
 
     private void configurarEventos() {
-        if (btnIngresoSalida != null) {
-            btnIngresoSalida.setOnClickListener(v ->
-                    startActivity(new Intent(this, frmCantidadProductos.class)));
-        }
 
         if (btnSolicitudes != null) {
             btnSolicitudes.setOnClickListener(v ->

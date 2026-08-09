@@ -30,7 +30,7 @@ import java.util.List;
 
 public class frmListarSolicitudes extends AppCompatActivity {
 
-    private MaterialButton btnSolicitudes, btnProveedores, btnDespacho, btnRegresar;
+    private MaterialButton btnProveedores, btnDespacho, btnRegresar;
     private RecyclerView rvSolicitudes;
     private AppDatabase db;
     private List<Solicitud> listaSolicitudesGlobal = new ArrayList<>();
@@ -56,7 +56,6 @@ public class frmListarSolicitudes extends AppCompatActivity {
 
         cargarYMostrarSolicitudes();
 
-        btnSolicitudes = findViewById(R.id.btnSolicitudes);
         btnProveedores = findViewById(R.id.btnProveedores);
         btnDespacho = findViewById(R.id.btnDespacho);
         btnRegresar = findViewById(R.id.btnRegresar);
@@ -119,7 +118,6 @@ public class frmListarSolicitudes extends AppCompatActivity {
                         db.solicitudDao().eliminarSolicitud(solicitud);
                         Toast.makeText(this, "Solicitud eliminada", Toast.LENGTH_SHORT).show();
 
-                        // Removemos localmente para animación fluida sin recargar todo
                         listaSolicitudesGlobal.remove(position);
                         adapter.notifyItemRemoved(position);
                         adapter.notifyItemRangeChanged(position, listaSolicitudesGlobal.size());
@@ -156,15 +154,9 @@ public class frmListarSolicitudes extends AppCompatActivity {
     }
 
     private void configurarEventos() {
-        if (btnSolicitudes != null) btnSolicitudes.setOnClickListener(v -> abrirSolicitudes());
         if (btnProveedores != null) btnProveedores.setOnClickListener(v -> abrirProveedores());
         if (btnDespacho != null) btnDespacho.setOnClickListener(v -> abrirDespacho());
         if (btnRegresar != null) btnRegresar.setOnClickListener(v -> finish());
-    }
-
-    private void abrirSolicitudes() {
-        Intent intent = new Intent(this, frmListarSolicitudes.class);
-        startActivity(intent);
     }
 
     private void abrirProveedores() {

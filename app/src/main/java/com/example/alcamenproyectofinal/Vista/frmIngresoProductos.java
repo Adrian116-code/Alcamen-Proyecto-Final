@@ -25,7 +25,7 @@ import java.util.List;
 
 public class frmIngresoProductos extends AppCompatActivity {
 
-    private MaterialButton btnIngresoSalida, btnSolicitudes, btnRegresar;
+    private MaterialButton btnSolicitudes, btnRegresar;
 
     AutoCompleteTextView producto_ingreso;
     EditText cantidad_ingreso;
@@ -50,7 +50,6 @@ public class frmIngresoProductos extends AppCompatActivity {
             return insets;
         });
 
-        btnIngresoSalida = findViewById(R.id.btnIngresoSalida);
         btnSolicitudes = findViewById(R.id.btnSolicitudes);
         btnRegresar = findViewById(R.id.btnRegresar);
 
@@ -59,12 +58,10 @@ public class frmIngresoProductos extends AppCompatActivity {
 
     private void cargarProductosEnDropdown() {
         try {
-            // Traemos los productos completos desde la BD
             listaProductosGlobal = db.productoDao().obtenerProductos();
             List<String> nombresProductos = new ArrayList<>();
 
             for (Producto p : listaProductosGlobal) {
-                // Creamos una cadena visualmente clara: "Nombre (Código)"
                 nombresProductos.add(p.getNombre() + " (" + p.getCodigo_producto() + ")");
             }
 
@@ -112,10 +109,6 @@ public class frmIngresoProductos extends AppCompatActivity {
     }
 
     private void configurarEventos() {
-        if (btnIngresoSalida != null) {
-            btnIngresoSalida.setOnClickListener(v ->
-                    startActivity(new Intent(this, frmCantidadProductos.class)));
-        }
 
         if (btnSolicitudes != null) {
             btnSolicitudes.setOnClickListener(v ->

@@ -25,7 +25,7 @@ import java.util.List;
 
 public class frmListarDespacho extends AppCompatActivity {
 
-    private MaterialButton btnSolicitudes, btnProveedores, btnDespacho, btnRegresar;
+    private MaterialButton btnSolicitudes, btnProveedores, btnRegresar;
     RecyclerView rvDespachos;
     AppDatabase db;
 
@@ -51,7 +51,6 @@ public class frmListarDespacho extends AppCompatActivity {
 
         btnSolicitudes = findViewById(R.id.btnSolicitudes);
         btnProveedores = findViewById(R.id.btnProveedores);
-        btnDespacho = findViewById(R.id.btnDespacho);
         btnRegresar = findViewById(R.id.btnRegresar);
 
         configurarEventos();
@@ -83,7 +82,6 @@ public class frmListarDespacho extends AppCompatActivity {
     private void configurarEventos() {
         if (btnSolicitudes != null) btnSolicitudes.setOnClickListener(v -> abrirSolicitudes());
         if (btnProveedores != null) btnProveedores.setOnClickListener(v -> abrirProveedores());
-        if (btnDespacho != null) btnDespacho.setOnClickListener(v -> abrirDespacho());
         if (btnRegresar != null) btnRegresar.setOnClickListener(v -> finish());
     }
 
@@ -94,11 +92,6 @@ public class frmListarDespacho extends AppCompatActivity {
 
     private void abrirProveedores() {
         Intent intent = new Intent(this, frmGestionProveedores.class);
-        startActivity(intent);
-    }
-
-    private void abrirDespacho() {
-        Intent intent = new Intent(this, frmListarDespacho.class);
         startActivity(intent);
     }
 

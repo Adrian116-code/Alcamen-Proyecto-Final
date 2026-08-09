@@ -8,7 +8,6 @@
     android:background="#1E1B4B"
     tools:context=".Vista.frmInsertarUsuarios">
 
-    <!-- ==================== HEADER (FIJO ARRIBA) ==================== -->
     <TextView
         android:id="@+id/headerInsertarUsuarios"
         android:layout_width="match_parent"
@@ -22,7 +21,6 @@
         android:paddingTop="20dp"
         android:paddingBottom="20dp"/>
 
-    <!-- ==================== ÁREA DESPLAZABLE (SCROLLVIEW) ==================== -->
 
     <ScrollView
         android:layout_width="match_parent"
@@ -196,16 +194,9 @@
                 android:onClick="btnInsertarUsuario"
                 android:text="Insertar Usuario" />
 
-            <Button
-                android:id="@+id/button28"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="btnRegresar"
-                android:text="Regresar" />
         </LinearLayout>
     </ScrollView>
 
-    <!-- ==================== FOOTER (FIJO ABAJO) ==================== -->
     <LinearLayout
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"

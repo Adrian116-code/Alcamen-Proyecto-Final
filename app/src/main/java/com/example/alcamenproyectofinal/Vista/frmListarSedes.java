@@ -48,7 +48,7 @@ import java.util.List;
 
 public class frmListarSedes extends AppCompatActivity {
 
-    private MaterialButton btnUsuarios, btnProductos, btnSedes, btnRegresar;
+    private MaterialButton btnUsuarios, btnProductos, btnRegresar;
 
     private RecyclerView rvSedes;
     private AppDatabase db;
@@ -69,7 +69,6 @@ public class frmListarSedes extends AppCompatActivity {
 
         btnUsuarios = findViewById(R.id.btnUsuarios);
         btnProductos = findViewById(R.id.btnProductos);
-        btnSedes = findViewById(R.id.btnSedes);
         btnRegresar = findViewById(R.id.btnRegresar);
 
         db = Room.databaseBuilder(getApplicationContext(),
@@ -123,11 +122,9 @@ public class frmListarSedes extends AppCompatActivity {
                 .setMessage("¿Estás seguro de eliminar la sede " + sede.getNombre() + "?")
                 .setPositiveButton("Sí, eliminar", (dialog, which) -> {
                     try {
-                        // Eliminar de la base de datos Room
                         db.sedeDao().eliminarSede(sede);
                         Toast.makeText(this, "Sede eliminada correctamente", Toast.LENGTH_SHORT).show();
 
-                        // Actualizar lista local con animación
                         listaSedes.remove(position);
                         adapter.notifyItemRemoved(position);
                         adapter.notifyItemRangeChanged(position, listaSedes.size());
@@ -147,7 +144,6 @@ public class frmListarSedes extends AppCompatActivity {
     private void configurarEventos() {
         if (btnUsuarios != null) btnUsuarios.setOnClickListener(v -> abrirUsuarios());
         if (btnProductos != null) btnProductos.setOnClickListener(v -> abrirProductos());
-        if (btnSedes != null) btnSedes.setOnClickListener(v -> abrirSedes());
         if (btnRegresar != null) btnRegresar.setOnClickListener(v -> finish());
     }
 
@@ -157,10 +153,6 @@ public class frmListarSedes extends AppCompatActivity {
 
     private void abrirProductos() {
         startActivity(new Intent(this, frmGestionProductos.class));
-    }
-
-    private void abrirSedes() {
-        startActivity(new Intent(this, frmGestionSedes.class));
     }
 
     public void btnRegresar(View view) {

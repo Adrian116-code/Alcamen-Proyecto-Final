@@ -54,13 +54,6 @@
             android:text="Eliminar Proveedor"
             android:layout_marginBottom="8dp" />
 
-        <Button
-            android:id="@+id/button59"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:onClick="btnRegresar"
-            android:text="Regresar" />
-
     </LinearLayout>
 
     <LinearLayout
