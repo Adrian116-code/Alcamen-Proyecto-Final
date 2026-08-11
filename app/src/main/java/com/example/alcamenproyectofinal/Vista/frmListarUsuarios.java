@@ -137,11 +137,11 @@ public class frmListarUsuarios extends AppCompatActivity {
     }
 
     private void abrirProductos() {
-        startActivity(new Intent(this, frmGestionProductos.class));
+        startActivity(new Intent(this, frmListarProductos.class));
     }
 
     private void abrirSedes() {
-        startActivity(new Intent(this, frmGestionSedes.class));
+        startActivity(new Intent(this, frmListarSedes.class));
     }
 
     public void btnRegresar(View view) {
