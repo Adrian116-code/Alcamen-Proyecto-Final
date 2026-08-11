@@ -14,10 +14,21 @@ import java.util.List;
 
 public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.ViewHolder> {
 
+    public interface OnItemClickListener {
+        void onEditarClick(Usuario usuario, int position);
+        void onEliminarClick(Usuario usuario, int position);
+    }
+
     private List<Usuario> listaUsuarios;
+    private OnItemClickListener listener;
 
     public UsuarioAdapter(List<Usuario> listaUsuarios) {
         this.listaUsuarios = listaUsuarios;
+    }
+
+    public UsuarioAdapter(List<Usuario> listaUsuarios, OnItemClickListener listener) {
+        this.listaUsuarios = listaUsuarios;
+        this.listener = listener;
     }
 
     @NonNull
@@ -38,21 +49,42 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.ViewHold
 
         String detalles = "DNI: " + u.getDni() + " | User: " + u.getUsername() + " | Edad: " + u.getEdad();
         holder.tvDetalles.setText(detalles);
-    }
 
-    @Override
-    public int getItemCount() {
-        return listaUsuarios.size();
-    }
+        if (holder.btnEditar != null) {
+            holder.btnEditar.setOnClickListener(v -> {
+                if (listener != null) {
+                    listener.onEditarClick(u, holder.getAdapterPosition());
+                }
+            });
+        }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvNombreCompleto, tvRol, tvDetalles;
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            tvNombreCompleto = itemView.findViewById(R.id.tvNombreCompleto);
-            tvRol = itemView.findViewById(R.id.tvRol);
-            tvDetalles = itemView.findViewById(R.id.tvDetalles);
+        if (holder.btnEliminar != null) {
+            holder.btnEliminar.setOnClickListener(v -> {
+                if (listener != null) {
+                    listener.onEliminarClick(u, holder.getAdapterPosition());
+                }
+            });
         }
     }
+
+        @Override
+        public int getItemCount() {
+            return listaUsuarios.size();
+        }
+
+        public static class ViewHolder extends RecyclerView.ViewHolder {
+            TextView tvNombreCompleto, tvRol, tvDetalles;
+            View btnEditar, btnEliminar; // Usa ImageButton o MaterialButton según corresponda
+
+            public ViewHolder(@NonNull View itemView) {
+                super(itemView);
+                tvNombreCompleto = itemView.findViewById(R.id.tvNombreCompleto);
+                tvRol = itemView.findViewById(R.id.tvRol);
+                tvDetalles = itemView.findViewById(R.id.tvDetalles);
+
+                btnEditar = itemView.findViewById(R.id.btnEditarUsuario);
+                btnEliminar = itemView.findViewById(R.id.btnEliminarUsuario);
+            }
+        }
+
 }

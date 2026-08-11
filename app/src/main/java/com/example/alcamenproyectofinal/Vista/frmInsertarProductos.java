@@ -105,11 +105,11 @@ public class frmInsertarProductos extends AppCompatActivity {
     }
 
     private void abrirUsuarios() {
-        startActivity(new Intent(this, frmGestionUsuarios.class));
+        startActivity(new Intent(this, frmListarUsuarios.class));
     }
 
     private void abrirSedes() {
-        startActivity(new Intent(this, frmGestionSedes.class));
+        startActivity(new Intent(this, frmListarSedes.class));
     }
 
     public void btnRegresar(View view){

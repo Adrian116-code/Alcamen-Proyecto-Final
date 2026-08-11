@@ -90,14 +90,14 @@ public class frmAdmin extends AppCompatActivity {
     }
 
     private void abrirUsuarios() {
-        startActivity(new Intent(this, frmGestionUsuarios.class));
+        startActivity(new Intent(this, frmListarUsuarios.class));
     }
 
     private void abrirProductos() {
-        startActivity(new Intent(this, frmGestionProductos.class));
+        startActivity(new Intent(this, frmListarProductos.class));
     }
 
     private void abrirSedes() {
-        startActivity(new Intent(this, frmGestionSedes.class));
+        startActivity(new Intent(this, frmListarSedes.class));
     }
 }

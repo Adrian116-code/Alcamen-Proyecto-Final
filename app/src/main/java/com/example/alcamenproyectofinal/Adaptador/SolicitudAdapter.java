@@ -87,7 +87,6 @@ public class SolicitudAdapter extends RecyclerView.Adapter<SolicitudAdapter.View
             tvProductoOperario = itemView.findViewById(R.id.tvProductoOperario);
             tvFecha = itemView.findViewById(R.id.tvFecha);
 
-            // Importante: Revisa que estos IDs coincidan con tu item_solicitud.xml
             btnEditar = itemView.findViewById(R.id.btnEditarSolicitud);
             btnEliminar = itemView.findViewById(R.id.btnEliminarSolicitud);
         }

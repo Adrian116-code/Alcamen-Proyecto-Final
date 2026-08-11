@@ -160,7 +160,7 @@ public class frmListarSolicitudes extends AppCompatActivity {
     }
 
     private void abrirProveedores() {
-        Intent intent = new Intent(this, frmGestionProveedores.class);
+        Intent intent = new Intent(this, frmListarProveedores.class);
         startActivity(intent);
     }
 

@@ -67,11 +67,11 @@ public class frmInsertarSedes extends AppCompatActivity {
     }
 
     private void abrirUsuarios() {
-        startActivity(new Intent(this, frmGestionUsuarios.class));
+        startActivity(new Intent(this, frmListarUsuarios.class));
     }
 
     private void abrirProductos() {
-        startActivity(new Intent(this, frmGestionProductos.class));
+        startActivity(new Intent(this, frmListarProductos.class));
     }
 
     public void btnRegresar(View view){

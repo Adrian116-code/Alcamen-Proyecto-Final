@@ -58,7 +58,7 @@ public class frmListarDespacho extends AppCompatActivity {
 
     private void cargarDespachos() {
         try {
-            List<Despacho_Sede> lista = db.despachoSedeDao().obtenerDespachos(); // Ajusta según tu método DAO
+            List<Despacho_Sede> lista = db.despachoSedeDao().obtenerDespachos();
 
             if (lista != null && !lista.isEmpty()) {
                 DespachoAdapter adapter = new DespachoAdapter(lista);
@@ -91,7 +91,7 @@ public class frmListarDespacho extends AppCompatActivity {
     }
 
     private void abrirProveedores() {
-        Intent intent = new Intent(this, frmGestionProveedores.class);
+        Intent intent = new Intent(this, frmListarProveedores.class);
         startActivity(intent);
     }
 

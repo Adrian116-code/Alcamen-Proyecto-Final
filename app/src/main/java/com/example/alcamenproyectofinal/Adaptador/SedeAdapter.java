@@ -32,7 +32,7 @@ public class SedeAdapter extends RecyclerView.Adapter<SedeAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_sede, parent, false); // Revisa que el layout coincida
+                .inflate(R.layout.item_sede, parent, false);
         return new ViewHolder(view);
     }
 
@@ -68,7 +68,6 @@ public class SedeAdapter extends RecyclerView.Adapter<SedeAdapter.ViewHolder> {
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            // Revisa que estas IDs coincidan con tu item_sede.xml
             tvNombreSede = itemView.findViewById(R.id.tvNombreSede);
             tvDireccionSede = itemView.findViewById(R.id.tvDireccionSede);
             tvCodigoSede = itemView.findViewById(R.id.tvCodigoSede);

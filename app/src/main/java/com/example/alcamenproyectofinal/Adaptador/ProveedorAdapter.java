@@ -72,7 +72,6 @@ public class ProveedorAdapter extends RecyclerView.Adapter<ProveedorAdapter.View
             tvContacto = itemView.findViewById(R.id.tvContacto);
             tvDetallesProveedor = itemView.findViewById(R.id.tvDetallesProveedor);
 
-            // Verifica que estas IDs coincidan con tu item_proveedor.xml
             btnEditarProveedor = itemView.findViewById(R.id.btnEditarProveedor);
             btnEliminarProveedor = itemView.findViewById(R.id.btnEliminarProveedor);
         }

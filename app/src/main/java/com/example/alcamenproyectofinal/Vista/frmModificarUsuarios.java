@@ -27,6 +27,8 @@ public class frmModificarUsuarios extends AppCompatActivity {
     EditText codigo, dni, nombres, apellidos, edad, username, password;
     private AutoCompleteTextView rol;
 
+    private AppDatabase db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +60,9 @@ public class frmModificarUsuarios extends AppCompatActivity {
             }
         });
 
+        db = Room.databaseBuilder(getApplicationContext(),
+                AppDatabase.class, "hipercorp_db").allowMainThreadQueries().build();
+
         codigo = findViewById(R.id.txtCodigoUsuario);
         dni = findViewById(R.id.txtDni);
         nombres = findViewById(R.id.txtNombres);
@@ -66,7 +71,34 @@ public class frmModificarUsuarios extends AppCompatActivity {
         username = findViewById(R.id.txtUsernameMod);
         password = findViewById(R.id.txtPasswordMod);
 
+        if (getIntent().hasExtra("CODIGO_USUARIO")) {
+            String codigoRecibido = getIntent().getStringExtra("CODIGO_USUARIO");
+            cargarDatosUsuario(codigoRecibido);
+        }
+
         configurarEventos();
+    }
+
+    private void cargarDatosUsuario(String codigoUsuario) {
+        try {
+            Usuario usuarioEncontrado = db.usuarioDao().obtenerPorId(codigoUsuario);
+
+            if (usuarioEncontrado != null) {
+                codigo.setText(String.valueOf(usuarioEncontrado.getCodigo_usuario()));
+                nombres.setText(usuarioEncontrado.getNombres());
+                apellidos.setText(usuarioEncontrado.getApellidos());
+                dni.setText(usuarioEncontrado.getDni());
+                username.setText(usuarioEncontrado.getUsername());
+                password.setText(usuarioEncontrado.getPassword());
+                edad.setText(String.valueOf(usuarioEncontrado.getEdad()));
+
+                rol.setText(usuarioEncontrado.getRol(), false);
+
+                codigo.setEnabled(false);
+            }
+        } catch (Exception e) {
+            Toast.makeText(this, "Error al cargar el usuario: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void btnModificarUsuario(View view){
@@ -96,11 +128,11 @@ public class frmModificarUsuarios extends AppCompatActivity {
     }
 
     private void abrirProductos() {
-        startActivity(new Intent(this, frmGestionProductos.class));
+        startActivity(new Intent(this, frmListarProductos.class));
     }
 
     private void abrirSedes() {
-        startActivity(new Intent(this, frmGestionSedes.class));
+        startActivity(new Intent(this, frmListarSedes.class));
     }
 
     public void btnRegresar(View view){
