@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:text="Listar Productos"
+        android:text="Gestión Productos"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -34,7 +34,6 @@
         app:layout_constraintTop_toBottomOf="@+id/tvTituloListarProductos"
         tools:listitem="@layout/item_producto" />
 
-    <!-- Contenedor para botones de acción -->
     <LinearLayout
         android:id="@+id/containerBotones"
         android:layout_width="334dp"
