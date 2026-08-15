@@ -7,22 +7,10 @@
     android:fitsSystemWindows="true"
     android:background="#1E1B4B">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/headerJefeAlmacen"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_alignParentTop="true"
-        android:background="#5C429B"
-        app:title="Jefe Almacén"
-        app:titleCentered="true"
-        app:titleTextAppearance="@style/ToolbarTitleStyle"
-        app:titleTextColor="@android:color/white" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/footerJefeAlmacen"
-        android:layout_below="@id/headerJefeAlmacen"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="16dp">
@@ -31,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:text="Resumen de Almacén"
+            android:text="Jefe Almacén"
             android:textColor="@android:color/white"
             android:textSize="24sp"
             android:textStyle="bold" />

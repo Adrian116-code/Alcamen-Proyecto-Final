@@ -7,24 +7,10 @@
     android:fitsSystemWindows="true"
     android:background="#1E1B4B">
 
-    <!-- HEADER TOOLBAR -->
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/headerAdmin"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_alignParentTop="true"
-        android:background="#5C429B"
-        app:title="Administración"
-        app:titleCentered="true"
-        app:titleTextAppearance="@style/ToolbarTitleStyle"
-        app:titleTextColor="@android:color/white" />
-
-    <!-- CONTENEDOR CENTRAL: DASHBOARD DE CONTADORES -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="671dp"
         android:layout_above="@id/footerAdmin"
-        android:layout_below="@id/headerAdmin"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="16dp">
@@ -33,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:text="Resumen General"
+            android:text="Administrador"
             android:textColor="@android:color/white"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -44,7 +30,6 @@
             android:columnCount="2"
             android:rowCount="2">
 
-            <!-- 1. TARJETA CONTADOR USUARIOS -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="145dp"
                 android:layout_height="135dp"

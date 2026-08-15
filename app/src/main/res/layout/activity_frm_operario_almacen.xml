@@ -7,41 +7,27 @@
     android:fitsSystemWindows="true"
     android:background="#1E1B4B">
 
-    <!-- ==================== HEADER ==================== -->
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/headerOperarioAlmacen"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_alignParentTop="true"
-        android:background="#5C429B"
-        app:title="Operario Almacén"
-        app:titleCentered="true"
-        app:titleTextAppearance="@style/ToolbarTitleStyle"
-        app:titleTextColor="@android:color/white" />
-
-    <!-- ==================== LISTA DE PRODUCTOS ==================== -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/footerOperarioAlmacen"
-        android:layout_below="@id/headerOperarioAlmacen"
+        android:gravity="center"
         android:orientation="vertical"
         android:padding="16dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            android:text="Lista de Productos"
+            android:layout_marginBottom="20dp"
+            android:text="Operario Almacén"
             android:textColor="@android:color/white"
-            android:textSize="22sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
-        <!-- LISTA RECYCLERVIEW VERTICAL -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvProductos"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
+            android:layout_height="558dp"
             android:layout_weight="1"
             android:scrollbars="vertical" />
 
@@ -58,7 +44,6 @@
 
     </LinearLayout>
 
-    <!-- ==================== FOOTER ==================== -->
     <LinearLayout
         android:id="@+id/footerOperarioAlmacen"
         android:layout_width="match_parent"
